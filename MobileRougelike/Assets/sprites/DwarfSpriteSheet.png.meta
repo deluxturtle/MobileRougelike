@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 884d2ce67a4aa634887ee5de94a0425b
+timeCreated: 1455062388
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DwarfSpriteSheet_0
+    21300002: DwarfSpriteSheet_1
+    21300004: DwarfSpriteSheet_2
+    21300006: DwarfSpriteSheet_3
+    21300008: DwarfSpriteSheet_4
+    21300010: DwarfSpriteSheet_5
+    21300012: DwarfSpriteSheet_6
+    21300014: DwarfSpriteSheet_7
+    21300016: DwarfSpriteSheet_8
+    21300018: DwarfSpriteSheet_9
+    21300020: DwarfSpriteSheet_10
+    21300022: DwarfSpriteSheet_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DwarfSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 1175
+        width: 259
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 1175
+        width: 259
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 1174
+        width: 259
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 799
+        width: 187
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 799
+        width: 187
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 799
+        width: 186
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 407
+        width: 185
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 406
+        width: 187
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 406
+        width: 187
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 35
+        width: 258
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 36
+        width: 259
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DwarfSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 36
+        width: 259
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
