@@ -13,6 +13,7 @@ public class ScriptPlayer : MonoBehaviour {
     float orbSpeed = 20f;
 
 
+
 	// Use this for initialization
 	void Start () {
         left = right = up = false;

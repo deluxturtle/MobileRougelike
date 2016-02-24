@@ -7,16 +7,20 @@ public class EnemyMovement : MonoBehaviour {
     bool enemyRight, enemyLeft, enemyUp, enemyDown;
     float enemySpeed;
     Animator enemyAnimator;
+    UIReferences uiReferences;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         enemyDown = enemyRight = enemyLeft = enemyUp = false;
         enemyAnimator = GetComponent<Animator>();
         heroObj = GameObject.FindGameObjectWithTag("Player");
         enemySpeed = 1.0f;
         InvokeRepeating("Accelerate", 2f, 5f);
-	}
-	
+        uiReferences = GameObject.Find("References").GetComponent<UIReferences>();
+
+    }
+
     void Accelerate()
     {
         enemySpeed++;
@@ -34,6 +38,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             Debug.Log("Time!");
             Time.timeScale = 0f;
+            uiReferences.restartPanel.SetActive(true);
         }
     }
 
