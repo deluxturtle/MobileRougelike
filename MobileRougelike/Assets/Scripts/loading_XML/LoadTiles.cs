@@ -52,7 +52,7 @@ public class LoadTiles : MonoBehaviour {
                 //Pull out of the data node
                 XmlNode tempNode = layerInfo.SelectSingleNode("data");
 
-                int verticalIndex = 0;
+                int verticalIndex = layerHeight - 1;
                 int horizontalIndex = 0;
 
                 //for each tile inside the background
@@ -64,12 +64,13 @@ public class LoadTiles : MonoBehaviour {
                     if(spriteValue > 0)
                     {
                         //create a sprite
-                        GameObject tempSprite = new GameObject("test");
+                        GameObject tempSprite = new GameObject("Background");
                         SpriteRenderer spriteRenderer = tempSprite.AddComponent<SpriteRenderer>();
                         spriteRenderer.sprite = sprites[spriteValue - 1];
 
                         tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
                         spriteRenderer.sortingLayerName = "Background";
+                        tempSprite.transform.parent = GameObject.Find("BackgroundLayer").transform;
                         //Instantiate(tempCube, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
 
                     }
@@ -78,12 +79,116 @@ public class LoadTiles : MonoBehaviour {
                     if(horizontalIndex % layerWidth == 0)
                     {
                         //Increase our virtical location
-                        verticalIndex++;
+                        verticalIndex--;
                         //reset our horizontal location.
                         horizontalIndex = 0;
                     }
                 }
             }
+
+            //In the obstacle Layer
+            if(layerInfo.Attributes["name"].Value == "Obstacles")
+            {
+                XmlNode tempNode = layerInfo.SelectSingleNode("data");
+
+                int verticalIndex = layerHeight - 1;
+                int horizontalIndex = 0;
+
+                //for each tile inside the obstacles layer
+                foreach(XmlNode tile in tempNode.SelectNodes("tile"))
+                {
+                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
+
+                    //if sprite is not empty
+                    if(spriteValue > 0)
+                    {
+                        GameObject tempSprite = new GameObject("test");
+                        SpriteRenderer tempRenderer = tempSprite.AddComponent<SpriteRenderer>();
+                        tempRenderer.sprite = sprites[spriteValue - 1];
+
+                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
+                        tempRenderer.sortingLayerName = "Obstacles";
+                        tempSprite.transform.parent = GameObject.Find("ObstaclesLayer").transform;
+                    }
+
+                    horizontalIndex++;
+                    if(horizontalIndex % layerWidth == 0)
+                    {
+                        verticalIndex--;
+                        horizontalIndex = 0;
+                    }
+                }
+            }
+
+            //In the Interactive Layer
+            if (layerInfo.Attributes["name"].Value == "Interactive")
+            {
+                XmlNode tempNode = layerInfo.SelectSingleNode("data");
+
+                int verticalIndex = layerHeight - 1;
+                int horizontalIndex = 0;
+
+                //for each tile inside the obstacles layer
+                foreach (XmlNode tile in tempNode.SelectNodes("tile"))
+                {
+                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
+
+                    //if sprite is not empty
+                    if (spriteValue > 0)
+                    {
+                        GameObject tempSprite = new GameObject("test");
+                        SpriteRenderer tempRenderer = tempSprite.AddComponent<SpriteRenderer>();
+                        tempRenderer.sprite = sprites[spriteValue - 1];
+
+                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
+                        tempRenderer.sortingLayerName = "Interactive";
+                        tempSprite.transform.parent = GameObject.Find("InteractiveLayer").transform;
+                    }
+
+                    horizontalIndex++;
+                    if (horizontalIndex % layerWidth == 0)
+                    {
+                        verticalIndex--;
+                        horizontalIndex = 0;
+                    }
+                }
+            }
+
+            //In the foreground Layer
+            if (layerInfo.Attributes["name"].Value == "Foreground")
+            {
+                XmlNode tempNode = layerInfo.SelectSingleNode("data");
+
+                int verticalIndex = layerHeight - 1;
+                int horizontalIndex = 0;
+
+                //for each tile inside the obstacles layer
+                foreach (XmlNode tile in tempNode.SelectNodes("tile"))
+                {
+                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
+
+                    //if sprite is not empty
+                    if (spriteValue > 0)
+                    {
+                        GameObject tempSprite = new GameObject("Foreground");
+                        SpriteRenderer tempRenderer = tempSprite.AddComponent<SpriteRenderer>();
+                        tempRenderer.sprite = sprites[spriteValue - 1];
+
+                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
+                        tempRenderer.sortingLayerName = "Foreground";
+                        tempSprite.transform.parent = GameObject.Find("ForegroundLayer").transform;
+                    }
+
+                    horizontalIndex++;
+                    if (horizontalIndex % layerWidth == 0)
+                    {
+                        verticalIndex--;
+                        horizontalIndex = 0;
+                    }
+                }
+            }
+
+
         }
 
 	}
