@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour {
         heroObj = GameObject.FindGameObjectWithTag("Player");
         enemySpeed = 1.0f;
         InvokeRepeating("Accelerate", 2f, 5f);
-        uiReferences = GameObject.Find("References").GetComponent<UIReferences>();
+        //uiReferences = GameObject.Find("References").GetComponent<UIReferences>();
 
     }
 
@@ -34,22 +34,35 @@ public class EnemyMovement : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
-        {
-            Debug.Log("Time!");
-            Time.timeScale = 0f;
-            uiReferences.restartPanel.SetActive(true);
-        }
-    }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.name == "Orb(Clone)")
+
+        if (other.gameObject.name == "Orb(Clone)")
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Time!");
+            Time.timeScale = 0f;
+            //uiReferences.restartPanel.SetActive(true);
+        }
+    }
+
+
+
+    //void OnTriggerEn(Collision2D other)
+    //{
+    //    if(other.gameObject.name == "Orb(Clone)")
+    //    {
+    //        Destroy(other.gameObject);
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     void EnemyMove()
     {

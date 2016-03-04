@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Xml;
-using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// @Author: Andrew Seba
@@ -9,22 +9,47 @@ using System.Collections;
 public class LoadTiles : MonoBehaviour {
 
     //holds the .xml file.
-    public TextAsset mapInformation;
+    public TextAsset[] mapInformation;
     //a temporary tile object
     public GameObject tempCube;
-
+    public int numMaps;
+    //private variables
+    GameObject tileParent;
     private Sprite[] sprites;
 
-	// Use this for initialization
-	void Start () {
+    //Sprite Index for interactable entities.
+    const int MUSHROOM = 89;
+    const int POT = 450;
+    
+
+    void Start()
+    {
+        tileParent = new GameObject();
+        LoadMap(Random.Range(0, mapInformation.Length));
+
+    }
+
+	public void LoadMap (int mapNum)
+    {
         //Load the tileset into the sprites array
         sprites = Resources.LoadAll<Sprite>("roguelikeDungeon_transparent");
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(mapInformation.text);
 
-        //Manuever the camera
-        //Camera.main.transform.position = new Vector3();
-        //Camera.main.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        switch (mapNum)
+        {
+            case 0:
+                xmlDoc.LoadXml(mapInformation[0].text);
+                break;
+            case 1:
+                xmlDoc.LoadXml(mapInformation[1].text);
+                break;
+            case 2:
+                xmlDoc.LoadXml(mapInformation[2].text);
+                break;
+            default:
+                Debug.Log("Map number not found.");
+                break;
+        }
 
         XmlNodeList layerNames = xmlDoc.GetElementsByTagName("layer");
 
@@ -46,155 +71,108 @@ public class LoadTiles : MonoBehaviour {
             int layerWidth = int.Parse(layerInfo.Attributes["width"].Value);
             int layerHeight = int.Parse(layerInfo.Attributes["height"].Value);
 
-            //In the background layer in the xml
-            if(layerInfo.Attributes["name"].Value == "Background")
-            {
+            Debug.Log(layerInfo.Attributes["name"].Value);
+
+            ////In the background layer in the xml
+            //if(layerInfo.Attributes["name"].Value == "Background")
+            //{
                 //Pull out of the data node
-                XmlNode tempNode = layerInfo.SelectSingleNode("data");
+            XmlNode tempNode = layerInfo.SelectSingleNode("data");
 
-                int verticalIndex = layerHeight - 1;
-                int horizontalIndex = 0;
+            int verticalIndex = layerHeight - 1;
+            int horizontalIndex = 0;
 
-                //for each tile inside the background
-                foreach(XmlNode tile in tempNode.SelectNodes("tile"))
-                {
-                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
-
-                    //if sprite is not empty
-                    if(spriteValue > 0)
-                    {
-                        //create a sprite
-                        GameObject tempSprite = new GameObject("Background");
-                        SpriteRenderer spriteRenderer = tempSprite.AddComponent<SpriteRenderer>();
-                        spriteRenderer.sprite = sprites[spriteValue - 1];
-
-                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
-                        spriteRenderer.sortingLayerName = "Background";
-                        tempSprite.transform.parent = GameObject.Find("BackgroundLayer").transform;
-                        //Instantiate(tempCube, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
-
-                    }
-
-                    horizontalIndex++;
-                    if(horizontalIndex % layerWidth == 0)
-                    {
-                        //Increase our virtical location
-                        verticalIndex--;
-                        //reset our horizontal location.
-                        horizontalIndex = 0;
-                    }
-                }
-            }
-
-            //In the obstacle Layer
-            if(layerInfo.Attributes["name"].Value == "Obstacles")
+            //for each tile inside the background
+            foreach(XmlNode tile in tempNode.SelectNodes("tile"))
             {
-                XmlNode tempNode = layerInfo.SelectSingleNode("data");
+                int spriteValue = int.Parse(tile.Attributes["gid"].Value);
 
-                int verticalIndex = layerHeight - 1;
-                int horizontalIndex = 0;
 
-                //for each tile inside the obstacles layer
-                foreach(XmlNode tile in tempNode.SelectNodes("tile"))
+                //if sprite is not empty
+                if(spriteValue > 0)
                 {
-                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
+                    //create a sprite
+                    //GameObject tempSprite = new GameObject("Background");
+                    GameObject tempSprite = new GameObject(layerInfo.Attributes["name"].Value + " <" + horizontalIndex + ", " + verticalIndex + ">");
+                    //Make a sprite renderer.
+                    SpriteRenderer spriteRenderer = tempSprite.AddComponent<SpriteRenderer>();
+                    //Get sprite from sheet.
+                    spriteRenderer.sprite = sprites[spriteValue - 1];
+                    //Set position
+                    tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
+                    //Set sorting layer.
+                    spriteRenderer.sortingLayerName = layerInfo.Attributes["name"].Value;
+                    //Set parent
+                    tempSprite.transform.parent = GameObject.Find(layerInfo.Attributes["name"].Value + "Layer").transform;
+                    tempSprite.tag = "Tile";
+                    //Instantiate(tempCube, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
 
-                    //if sprite is not empty
-                    if(spriteValue > 0)
+                    //Add rigidbody and box collider to the walls.
+                    if (layerInfo.Attributes["name"].Value == "Obstacles")
                     {
-                        GameObject tempSprite = new GameObject("test");
-                        SpriteRenderer tempRenderer = tempSprite.AddComponent<SpriteRenderer>();
-                        tempRenderer.sprite = sprites[spriteValue - 1];
-
-                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
-                        tempRenderer.sortingLayerName = "Obstacles";
-                        tempSprite.transform.parent = GameObject.Find("ObstaclesLayer").transform;
+                        tempSprite.AddComponent<BoxCollider2D>();
+                        tempSprite.AddComponent<Rigidbody2D>();
+                        tempSprite.GetComponent<Rigidbody2D>().gravityScale = 0;
+                        tempSprite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                     }
 
-                    horizontalIndex++;
-                    if(horizontalIndex % layerWidth == 0)
+                    if(layerInfo.Attributes["name"].Value == "Interactive")
                     {
-                        verticalIndex--;
-                        horizontalIndex = 0;
+                        switch (spriteValue)
+                        {
+                            case MUSHROOM:
+                                tempSprite.AddComponent<EntityMushroom>();
+                                break;
+                            //case POT:
+                            //    tempSprite.AddComponent<EntityPot>();
+                            //    break;
+                        }
                     }
+
+                }
+
+                horizontalIndex++;
+                if(horizontalIndex % layerWidth == 0)
+                {
+                    //Increase our virtical location
+                    verticalIndex--;
+                    //reset our horizontal location.
+                    horizontalIndex = 0;
                 }
             }
-
-            //In the Interactive Layer
-            if (layerInfo.Attributes["name"].Value == "Interactive")
-            {
-                XmlNode tempNode = layerInfo.SelectSingleNode("data");
-
-                int verticalIndex = layerHeight - 1;
-                int horizontalIndex = 0;
-
-                //for each tile inside the obstacles layer
-                foreach (XmlNode tile in tempNode.SelectNodes("tile"))
-                {
-                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
-
-                    //if sprite is not empty
-                    if (spriteValue > 0)
-                    {
-                        GameObject tempSprite = new GameObject("test");
-                        SpriteRenderer tempRenderer = tempSprite.AddComponent<SpriteRenderer>();
-                        tempRenderer.sprite = sprites[spriteValue - 1];
-
-                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
-                        tempRenderer.sortingLayerName = "Interactive";
-                        tempSprite.transform.parent = GameObject.Find("InteractiveLayer").transform;
-                    }
-
-                    horizontalIndex++;
-                    if (horizontalIndex % layerWidth == 0)
-                    {
-                        verticalIndex--;
-                        horizontalIndex = 0;
-                    }
-                }
-            }
-
-            //In the foreground Layer
-            if (layerInfo.Attributes["name"].Value == "Foreground")
-            {
-                XmlNode tempNode = layerInfo.SelectSingleNode("data");
-
-                int verticalIndex = layerHeight - 1;
-                int horizontalIndex = 0;
-
-                //for each tile inside the obstacles layer
-                foreach (XmlNode tile in tempNode.SelectNodes("tile"))
-                {
-                    int spriteValue = int.Parse(tile.Attributes["gid"].Value);
-
-                    //if sprite is not empty
-                    if (spriteValue > 0)
-                    {
-                        GameObject tempSprite = new GameObject("Foreground");
-                        SpriteRenderer tempRenderer = tempSprite.AddComponent<SpriteRenderer>();
-                        tempRenderer.sprite = sprites[spriteValue - 1];
-
-                        tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
-                        tempRenderer.sortingLayerName = "Foreground";
-                        tempSprite.transform.parent = GameObject.Find("ForegroundLayer").transform;
-                    }
-
-                    horizontalIndex++;
-                    if (horizontalIndex % layerWidth == 0)
-                    {
-                        verticalIndex--;
-                        horizontalIndex = 0;
-                    }
-                }
-            }
-
-
         }
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update ()
+    {
+        #region CheatCodes
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            ClearLevel();
+            LoadMap(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            ClearLevel();
+            LoadMap(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            ClearLevel();
+            LoadMap(2);
+        }
+        Time.timeScale = 1;
+
+        #endregion
+    }
+
+    void ClearLevel()
+    {
+        foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        {
+            Destroy(tile);
+        }
+    }
 }
