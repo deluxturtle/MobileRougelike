@@ -16,8 +16,8 @@ public class LoadTiles : MonoBehaviour {
     private Sprite[] sprites;
 
     //Sprite Index for interactable entities.
-    const int MUSHROOM = 89;
-    const int POT = 450;
+    //const int MUSHROOM = 89;
+    //const int POT = 450;
     
 
     void Start()
@@ -112,6 +112,10 @@ public class LoadTiles : MonoBehaviour {
                         tempSprite.AddComponent<BoxCollider2D>();
                         tempSprite.AddComponent<Rigidbody2D>();
                         tempSprite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                        if(spriteValue >= 31 && spriteValue <= 129)
+                        {
+                            tempSprite.name = "Ceiling";
+                        }
                     }
 
                     if(layerInfo.Attributes["name"].Value == "Interactive")

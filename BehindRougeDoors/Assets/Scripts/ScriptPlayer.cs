@@ -12,6 +12,8 @@ public class ScriptPlayer : MonoBehaviour {
     public GameObject orb;
     float orbSpeed = 20f;
 
+    int[] posIndex;
+
 
 
 	// Use this for initialization
@@ -27,9 +29,11 @@ public class ScriptPlayer : MonoBehaviour {
 
 #if UNITY_EDITOR
 
+        MoveCharacter();
         if (Input.GetButtonDown("Fire1"))
         {
-            SpawnOrb();
+            animator.SetTrigger("blast");
+            Invoke("SpawnOrb", 0.5f);
         }
 #elif UNITY_ANDROID
         if(Input.touchCount > 0)
@@ -45,11 +49,14 @@ public class ScriptPlayer : MonoBehaviour {
 #endif
     }
 
+    
+
     void SpawnOrb()
     {
         
         GameObject orbInstance = (GameObject)Instantiate(orb, transform.position, Quaternion.identity);
         Rigidbody2D orbRigid = orbInstance.GetComponent<Rigidbody2D>();
+        
         if (right)
         {
             orbRigid.velocity = new Vector2(orbSpeed, 0f);
@@ -71,62 +78,54 @@ public class ScriptPlayer : MonoBehaviour {
 
     void FixedUpdate()
     {
-        MoveCharacter();
+        
     }
 
     private void MoveCharacter()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            animator.SetBool("left", false);
-            animator.SetBool("right", true);
-            animator.SetBool("up", false);
-            animator.SetBool("down", false);
+
+            animator.SetTrigger("walkRight");
 
             left = up = down = false;
             right = true;
 
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            GetComponent<SpriteRenderer>().flipX = false;
+
+            transform.position = new Vector2(transform.position.x + 1, transform.position.y);
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            animator.SetBool("left", true);
-            animator.SetBool("right", false);
-            animator.SetBool("up", false);
-            animator.SetBool("down", false);
+            
+            animator.SetTrigger("walkRight");
 
             right = up = down = false;
             left = true;
 
+            GetComponent<SpriteRenderer>().flipX = true;
 
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+
+            transform.position = new Vector2(transform.position.x - 1, transform.position.y);
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            animator.SetBool("left", false);
-            animator.SetBool("right", false);
-            animator.SetBool("up", true);
-            animator.SetBool("down", false);
 
             right = left = down = false;
             up = true;
 
-            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            transform.position = new Vector2(transform.position.x, transform.position.y + 1);
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            animator.SetBool("left", false);
-            animator.SetBool("right", false);
-            animator.SetBool("up", false);
-            animator.SetBool("down", true);
 
             right = left = up = false;
             down = true;
 
-            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            transform.position = new Vector2(transform.position.x, transform.position.y - 1);
         }
 
     }
