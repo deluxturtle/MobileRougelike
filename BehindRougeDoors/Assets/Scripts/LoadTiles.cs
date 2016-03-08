@@ -15,10 +15,17 @@ public class LoadTiles : MonoBehaviour {
     GameObject tileParent;
     private Sprite[] sprites;
 
+    public int layerWidth;
+    public int layerHeight;
+
+
+    //BackgroundLyaer
+    GameObject[] tileIndex;
+
     //Sprite Index for interactable entities.
     //const int MUSHROOM = 89;
     //const int POT = 450;
-    
+
 
     void Start()
     {
@@ -66,8 +73,8 @@ public class LoadTiles : MonoBehaviour {
         //For each layer that exists
         foreach(XmlNode layerInfo in layerNames)
         {
-            int layerWidth = int.Parse(layerInfo.Attributes["width"].Value);
-            int layerHeight = int.Parse(layerInfo.Attributes["height"].Value);
+            layerWidth = int.Parse(layerInfo.Attributes["width"].Value);
+            layerHeight = int.Parse(layerInfo.Attributes["height"].Value);
 
             Debug.Log(layerInfo.Attributes["name"].Value);
 
@@ -80,7 +87,7 @@ public class LoadTiles : MonoBehaviour {
             int verticalIndex = layerHeight - 1;
             int horizontalIndex = 0;
 
-            //for each tile inside the background
+            //for each tile inside the map
             foreach(XmlNode tile in tempNode.SelectNodes("tile"))
             {
                 int spriteValue = int.Parse(tile.Attributes["gid"].Value);
@@ -92,6 +99,11 @@ public class LoadTiles : MonoBehaviour {
                     //create a sprite
                     //GameObject tempSprite = new GameObject("Background");
                     GameObject tempSprite = new GameObject(layerInfo.Attributes["name"].Value + " <" + horizontalIndex + ", " + verticalIndex + ">");
+                    //Add the tile script to it
+                    Tile tempTile = tempSprite.AddComponent<Tile>();
+                    tempTile.xIndex = horizontalIndex;
+                    tempTile.yIndex = verticalIndex;
+
                     //Make a sprite renderer.
                     SpriteRenderer spriteRenderer = tempSprite.AddComponent<SpriteRenderer>();
                     //Get sprite from sheet.
@@ -131,6 +143,9 @@ public class LoadTiles : MonoBehaviour {
                         }
                     }
 
+                    //Testing Disableing the spriteRenderer to make it black
+                    spriteRenderer.enabled = false;
+
                 }
 
                 horizontalIndex++;
@@ -142,6 +157,12 @@ public class LoadTiles : MonoBehaviour {
                     horizontalIndex = 0;
                 }
             }
+        }
+
+        //Generate Tile neighbors
+        foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        {
+            tile.GetComponent<Tile>().MakeNeighbors();
         }
 
 	}

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class ScriptPlayer : MonoBehaviour {
@@ -12,16 +12,103 @@ public class ScriptPlayer : MonoBehaviour {
     public GameObject orb;
     float orbSpeed = 20f;
 
-    int[] posIndex;
+    int sightRange = 5;
 
+    int xIndex = 3;
+    int yIndex = 3;
 
+    List<GameObject> lightTiles;
+    
 
 	// Use this for initialization
 	void Start () {
+
+        LightArea();
+
         left = right = up = false;
         down = true;
         animator = GetComponent<Animator>();
 	}
+
+    //Background<18, 28>
+
+    void AddNeighbors(int pRange, int[] pUnitIndex, List<GameObject> pList)
+    {
+        int z = pUnitIndex[0];
+        int zBack = z - 1;
+        int zFoward = z + 1;
+
+        int x = pUnitIndex[1];
+        int xLeft = x - 1;
+        int xRight = x + 1;
+
+        int y = pUnitIndex[2];
+        //int yUp = y + 1;
+        //int yDown = y - 1;
+
+        //Check back
+        if (zBack >= 0)
+        {
+            GameObject upTile = GameObject.Find("Background <" + 18, 28 >);
+            if (upTile != null && !pList.Contains(upTile))
+            {
+                upTile.GetComponent<ScriptTile>().range += pRange;
+                pList.Add(upTile);
+            }
+        }
+
+        //Checkfoward
+        if (zFoward < scriptGrid.gridLength)
+        {
+            GameObject downTile = scriptGrid.grid[zFoward, x, y];
+            if (
+                downTile.GetComponent<ScriptTile>().range += pRange;
+                pList.Add(downTile);
+            }downTile != null && !pList.Contains(downTile))
+            {
+        }
+
+        //CheckLeft
+        if (xLeft >= 0)
+        {
+            GameObject leftTile = scriptGrid.grid[z, xLeft, y];
+            if (leftTile != null && !pList.Contains(leftTile))
+            {
+                leftTile.GetComponent<ScriptTile>().range += pRange;
+                pList.Add(leftTile);
+            }
+        }
+
+        //CheckRight
+        if (xRight < scriptGrid.gridWidth)
+        {
+            GameObject rightTile = scriptGrid.grid[z, xRight, y];
+            if (rightTile != null && !pList.Contains(rightTile))
+            {
+                rightTile.GetComponent<ScriptTile>().range += pRange;
+                pList.Add(rightTile);
+            }
+        }
+    }
+
+
+    void LightArea()
+    {
+
+
+        ////Test the light
+        //foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        //{
+        //    if (tile.GetComponent<Tile>().xIndex > xIndex - sightRange &&
+        //        tile.GetComponent<Tile>().xIndex < xIndex + sightRange &&
+        //        tile.GetComponent<Tile>().yIndex > yIndex - sightRange &&
+        //        tile.GetComponent<Tile>().yIndex < yIndex + sightRange)
+        //    {
+        //        tile.GetComponent<Tile>().LightTile();
+        //    }
+
+        //}
+    }
 
     // Update is called once per frame
     void Update()
@@ -94,6 +181,7 @@ public class ScriptPlayer : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = false;
 
             transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+            xIndex++;
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -108,6 +196,7 @@ public class ScriptPlayer : MonoBehaviour {
 
 
             transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+            xIndex--;
         }
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -117,6 +206,7 @@ public class ScriptPlayer : MonoBehaviour {
             up = true;
 
             transform.position = new Vector2(transform.position.x, transform.position.y + 1);
+            yIndex++;
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -126,7 +216,11 @@ public class ScriptPlayer : MonoBehaviour {
             down = true;
 
             transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+
+            yIndex--;
         }
+
+        LightArea();
 
     }
 }
