@@ -5,19 +5,16 @@ using System;
 public class ScriptPlayer : MonoBehaviour {
 
     public float moveSpeed = 2.0f;
+    public GameObject orb;
+
     bool left, right, up, down;
     Animator animator;
-
-    //orbstuff
-    public GameObject orb;
     float orbSpeed = 20f;
-
     int sightRange = 5;
-
     int xIndex = 3;
     int yIndex = 3;
 
-    List<GameObject> lightTiles;
+    List<GameObject> curLitTiles;
     
 
 	// Use this for initialization
@@ -31,71 +28,167 @@ public class ScriptPlayer : MonoBehaviour {
 	}
 
     //Background<18, 28>
-
-    void AddNeighbors(int pRange, int[] pUnitIndex, List<GameObject> pList)
+    void ClearRange()
     {
-        int z = pUnitIndex[0];
-        int zBack = z - 1;
-        int zFoward = z + 1;
-
-        int x = pUnitIndex[1];
-        int xLeft = x - 1;
-        int xRight = x + 1;
-
-        int y = pUnitIndex[2];
-        //int yUp = y + 1;
-        //int yDown = y - 1;
-
-        //Check back
-        if (zBack >= 0)
+        foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
         {
-            GameObject upTile = GameObject.Find("Background <" + 18, 28 >);
-            if (upTile != null && !pList.Contains(upTile))
+            tile.GetComponent<Tile>().tempRange = 0;
+        }
+    }
+
+    List<GameObject> FindTiles(int pRange)
+    {
+        ClearRange();
+        List<GameObject> tempList = new List<GameObject>();
+        //Grab the tile i am on.
+        
+        GameObject myTile = GameObject.Find("Background <" + xIndex +", " + yIndex + ">");
+        tempList.Add(myTile);
+
+        //Add my 1 distance neighbors
+        if(myTile.GetComponent<Tile>().northTiles.Count > 0)
+        {
+            foreach(GameObject neighborTile in myTile.GetComponent<Tile>().northTiles)
             {
-                upTile.GetComponent<ScriptTile>().range += pRange;
-                pList.Add(upTile);
+                neighborTile.GetComponent<Tile>().tempRange = 1;
+                tempList.Add(neighborTile);
+            }
+        }
+        if(myTile.GetComponent<Tile>().southTiles.Count > 0)
+        {
+            foreach(GameObject neighborTile in myTile.GetComponent<Tile>().southTiles)
+            {
+                neighborTile.GetComponent<Tile>().tempRange = 1;
+                tempList.Add(neighborTile);
+            }
+        }
+        if(myTile.GetComponent<Tile>().eastTiles.Count > 0)
+        {
+            foreach(GameObject neighborTile in myTile.GetComponent<Tile>().eastTiles)
+            {
+                neighborTile.GetComponent<Tile>().tempRange = 1;
+                tempList.Add(neighborTile);
+            }
+        }
+        if (myTile.GetComponent<Tile>().westTiles.Count > 0)
+        {
+            foreach(GameObject neighborTile in myTile.GetComponent<Tile>().westTiles)
+            {
+                neighborTile.GetComponent<Tile>().tempRange = 1;
+                tempList.Add(neighborTile);
             }
         }
 
-        //Checkfoward
-        if (zFoward < scriptGrid.gridLength)
-        {
-            GameObject downTile = scriptGrid.grid[zFoward, x, y];
-            if (
-                downTile.GetComponent<ScriptTile>().range += pRange;
-                pList.Add(downTile);
-            }downTile != null && !pList.Contains(downTile))
-            {
-        }
 
-        //CheckLeft
-        if (xLeft >= 0)
+        for (int range = 1; range <= pRange; range++)
         {
-            GameObject leftTile = scriptGrid.grid[z, xLeft, y];
-            if (leftTile != null && !pList.Contains(leftTile))
+            foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
             {
-                leftTile.GetComponent<ScriptTile>().range += pRange;
-                pList.Add(leftTile);
+                if(tile != null && tile.GetComponent<Tile>().tempRange == range)
+                {
+                    if(range < pRange)
+                    {
+                        Tile tempTile = tile.GetComponent<Tile>();
+                        //add their neighbors to the list
+                        foreach(GameObject neighborTile in tile.GetComponent<Tile>().neighbors)
+                        {
+                            if (!tempList.Contains(neighborTile) && !tempTile.blocksLight)
+                            {
+                                neighborTile.GetComponent<Tile>().tempRange = range + 1;
+                                tempList.Add(neighborTile);
+
+                            }
+                        }
+                        //if (tempTile.southTile != null && !tempList.Contains(tempTile.southTile))
+                        //{
+                        //    tempTile.southTile.GetComponent<Tile>().tempRange = range+1;
+                        //    tempList.Add(tempTile.southTile);
+                        //}
+                        //if (tempTile.eastTile != null && !tempList.Contains(tempTile.eastTile))
+                        //{
+                        //    tempTile.eastTile.GetComponent<Tile>().tempRange = range+1;
+                        //    tempList.Add(tempTile.eastTile);
+                        //}
+                        //if (tempTile.westTile != null && !tempList.Contains(tempTile.westTile))
+                        //{
+                        //    tempTile.westTile.GetComponent<Tile>().tempRange = range+1;
+                        //    tempList.Add(tempTile.westTile);
+                        //}
+
+                    }
+                }
             }
         }
 
-        //CheckRight
-        if (xRight < scriptGrid.gridWidth)
-        {
-            GameObject rightTile = scriptGrid.grid[z, xRight, y];
-            if (rightTile != null && !pList.Contains(rightTile))
-            {
-                rightTile.GetComponent<ScriptTile>().range += pRange;
-                pList.Add(rightTile);
-            }
-        }
+        //int z = pUnitIndex[0];
+        //int zBack = z - 1;
+        //int zFoward = z + 1;
+
+        //int x = pUnitIndex[1];
+        //int xLeft = x - 1;
+        //int xRight = x + 1;
+
+        //int y = pUnitIndex[2];
+        ////int yUp = y + 1;
+        ////int yDown = y - 1;
+
+        ////Check back
+        //if (zBack >= 0)
+        //{
+        //    GameObject upTile = GameObject.Find("Background <" + 18 + 28 +">");
+        //    if (upTile != null && !pList.Contains(upTile))
+        //    {
+        //        upTile.GetComponent<Tile>().tempRange += pRange;
+        //        pList.Add(upTile);
+        //    }
+        //}
+
+        ////Checkfoward
+        //if (zFoward < scriptGrid.gridLength)
+        //{
+        //    GameObject downTile = scriptGrid.grid[zFoward, x, y];
+        //    if (
+        //        downTile.GetComponent<ScriptTile>().range += pRange;
+        //        pList.Add(downTile);
+        //    }downTile != null && !pList.Contains(downTile))
+        //    {
+        //}
+
+        ////CheckLeft
+        //if (xLeft >= 0)
+        //{
+        //    GameObject leftTile = scriptGrid.grid[z, xLeft, y];
+        //    if (leftTile != null && !pList.Contains(leftTile))
+        //    {
+        //        leftTile.GetComponent<ScriptTile>().range += pRange;
+        //        pList.Add(leftTile);
+        //    }
+        //}
+
+        ////CheckRight
+        //if (xRight < scriptGrid.gridWidth)
+        //{
+        //    GameObject rightTile = scriptGrid.grid[z, xRight, y];
+        //    if (rightTile != null && !pList.Contains(rightTile))
+        //    {
+        //        rightTile.GetComponent<ScriptTile>().range += pRange;
+        //        pList.Add(rightTile);
+        //    }
+        //}
+
+        return tempList;
     }
 
 
     void LightArea()
     {
 
+        curLitTiles = FindTiles(2);
 
+        foreach(GameObject tile in curLitTiles)
+        {
+            tile.GetComponent<Tile>().LightTile();
+        }
         ////Test the light
         //foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
         //{
@@ -182,6 +275,7 @@ public class ScriptPlayer : MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x + 1, transform.position.y);
             xIndex++;
+            LightArea();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -197,6 +291,7 @@ public class ScriptPlayer : MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x - 1, transform.position.y);
             xIndex--;
+            LightArea();
         }
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -207,6 +302,7 @@ public class ScriptPlayer : MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x, transform.position.y + 1);
             yIndex++;
+            LightArea();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -218,9 +314,10 @@ public class ScriptPlayer : MonoBehaviour {
             transform.position = new Vector2(transform.position.x, transform.position.y - 1);
 
             yIndex--;
+            LightArea();
         }
 
-        LightArea();
+        
 
     }
 }

@@ -124,10 +124,17 @@ public class LoadTiles : MonoBehaviour {
                         tempSprite.AddComponent<BoxCollider2D>();
                         tempSprite.AddComponent<Rigidbody2D>();
                         tempSprite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                        if(spriteValue >= 31 && spriteValue <= 129)
+                        if(spriteValue >= 31 && spriteValue <= 86)
                         {
                             tempSprite.name = "Ceiling";
+                            tempTile.blocksLight = true;
                         }
+                        if(spriteValue >= 121 && spriteValue <= 158)
+                        {
+                            tempSprite.name = "Wall";
+                            tempTile.wall = true;
+                        }
+                        //121 158
                     }
 
                     if(layerInfo.Attributes["name"].Value == "Interactive")
