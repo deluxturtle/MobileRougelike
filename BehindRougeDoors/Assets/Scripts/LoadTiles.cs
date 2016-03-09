@@ -17,12 +17,20 @@ public class LoadTiles : MonoBehaviour {
 
     public int layerWidth;
     public int layerHeight;
+    public GameObject doorObject;
 
 
     //BackgroundLyaer
     GameObject[] tileIndex;
 
     //Sprite Index for interactable entities.
+    //Closed Door
+    const int CLOSEDDOORONETOP = 331;
+    const int CLOSEDDOORONEBOTTOM = 361;
+    //Open Door
+    const int OPENDOORONETOP = 338;
+    const int OPENDOORONEMIDDLE = 368;
+    const int OPENDOORONEBOTTOM = 397;
     //const int MUSHROOM = 89;
     //const int POT = 450;
 
@@ -97,7 +105,6 @@ public class LoadTiles : MonoBehaviour {
                 if(spriteValue > 0)
                 {
                     //create a sprite
-                    //GameObject tempSprite = new GameObject("Background");
                     GameObject tempSprite = new GameObject(layerInfo.Attributes["name"].Value + " <" + horizontalIndex + ", " + verticalIndex + ">");
                     //Add the tile script to it
                     Tile tempTile = tempSprite.AddComponent<Tile>();
@@ -142,6 +149,19 @@ public class LoadTiles : MonoBehaviour {
                     {
                         switch (spriteValue)
                         {
+                            case CLOSEDDOORONETOP:
+                                //Disable the door sprite cuz we are just going to spawn a door object on it.
+                                tempSprite.SetActive(false);
+                                break;
+                            case CLOSEDDOORONEBOTTOM:
+                                //Actually disable the door sprite
+                                tempSprite.SetActive(false);
+                                tempSprite.name = "Door";
+                                GameObject door = (GameObject)Instantiate(doorObject, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
+                                door.GetComponent<Tile>().xIndex = horizontalIndex;
+                                door.GetComponent<Tile>().yIndex = verticalIndex;
+                                door.GetComponent<Tile>().wall = true;
+                                break;
                             //case MUSHROOM:
                             //    tempSprite.AddComponent<EntityMushroom>();
                             //    break;

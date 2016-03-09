@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="50" height="30" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="dungeon tileset calciumtrice" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="dungeon tileset calciumtrice" tilewidth="16" tileheight="16" tilecount="1050" columns="30">
   <image source="dungeon_tileset_calciumtrice.png" width="480" height="560"/>
   <tile id="810">
    <properties>
@@ -1733,12 +1733,12 @@
    <tile gid="31"/>
    <tile gid="31"/>
    <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="53"/>
+   <tile gid="52"/>
    <tile gid="50"/>
    <tile gid="0"/>
    <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="52"/>
    <tile gid="31"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1937,8 +1937,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="57"/>
+   <tile gid="58"/>
    <tile gid="0"/>
    <tile gid="31"/>
    <tile gid="31"/>
@@ -2168,8 +2168,8 @@
    <tile gid="31"/>
    <tile gid="0"/>
    <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="53"/>
+   <tile gid="52"/>
    <tile gid="31"/>
    <tile gid="31"/>
    <tile gid="31"/>
@@ -2224,32 +2224,32 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="44"/>
+   <tile gid="44"/>
+   <tile gid="52"/>
+   <tile gid="53"/>
+   <tile gid="52"/>
+   <tile gid="52"/>
    <tile gid="50"/>
    <tile gid="0"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="43"/>
+   <tile gid="53"/>
+   <tile gid="52"/>
+   <tile gid="53"/>
+   <tile gid="52"/>
+   <tile gid="43"/>
+   <tile gid="43"/>
+   <tile gid="44"/>
+   <tile gid="42"/>
+   <tile gid="43"/>
+   <tile gid="42"/>
+   <tile gid="44"/>
+   <tile gid="44"/>
+   <tile gid="44"/>
+   <tile gid="52"/>
+   <tile gid="52"/>
+   <tile gid="53"/>
+   <tile gid="53"/>
    <tile gid="31"/>
    <tile gid="31"/>
    <tile gid="31"/>
@@ -2371,8 +2371,8 @@
    <tile gid="31"/>
    <tile gid="0"/>
    <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="53"/>
+   <tile gid="52"/>
    <tile gid="31"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2527,22 +2527,22 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="31"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="31"/>
-   <tile gid="0"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
-   <tile gid="31"/>
+   <tile gid="42"/>
+   <tile gid="43"/>
+   <tile gid="35"/>
    <tile gid="0"/>
    <tile gid="31"/>
    <tile gid="31"/>
    <tile gid="31"/>
+   <tile gid="44"/>
+   <tile gid="43"/>
+   <tile gid="42"/>
    <tile gid="31"/>
+   <tile gid="0"/>
+   <tile gid="31"/>
+   <tile gid="42"/>
+   <tile gid="43"/>
+   <tile gid="43"/>
    <tile gid="31"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3290,7 +3290,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="333"/>
+   <tile gid="331"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3340,7 +3340,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="363"/>
+   <tile gid="361"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3475,7 +3475,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="332"/>
+   <tile gid="331"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3525,7 +3525,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="362"/>
+   <tile gid="361"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3720,7 +3720,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="332"/>
+   <tile gid="331"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3770,7 +3770,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="362"/>
+   <tile gid="361"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3785,7 +3785,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="333"/>
+   <tile gid="331"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3835,7 +3835,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="363"/>
+   <tile gid="361"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>

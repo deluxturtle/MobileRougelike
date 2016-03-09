@@ -34,7 +34,8 @@ public class ScriptPlayer : MonoBehaviour {
     {
         foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
         {
-            tile.GetComponent<Tile>().tempRange = 0;
+            if(tile.GetComponentInChildren<Tile>() != null)
+                tile.GetComponent<Tile>().tempRange = 0;
         }
     }
 
@@ -86,7 +87,7 @@ public class ScriptPlayer : MonoBehaviour {
         {
             foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
             {
-                if(tile != null && tile.GetComponent<Tile>().tempRange == range)
+                if(tile != null && tile.GetComponent<Tile>()!= null && tile.GetComponent<Tile>().tempRange == range)
                 {
                     if(range < pRange)
                     {
@@ -100,83 +101,10 @@ public class ScriptPlayer : MonoBehaviour {
                                 tempList.Add(neighborTile);
                             }
                         }
-                        //if (tempTile.southTile != null && !tempList.Contains(tempTile.southTile))
-                        //{
-                        //    tempTile.southTile.GetComponent<Tile>().tempRange = range+1;
-                        //    tempList.Add(tempTile.southTile);
-                        //}
-                        //if (tempTile.eastTile != null && !tempList.Contains(tempTile.eastTile))
-                        //{
-                        //    tempTile.eastTile.GetComponent<Tile>().tempRange = range+1;
-                        //    tempList.Add(tempTile.eastTile);
-                        //}
-                        //if (tempTile.westTile != null && !tempList.Contains(tempTile.westTile))
-                        //{
-                        //    tempTile.westTile.GetComponent<Tile>().tempRange = range+1;
-                        //    tempList.Add(tempTile.westTile);
-                        //}
-
                     }
                 }
             }
         }
-
-        //int z = pUnitIndex[0];
-        //int zBack = z - 1;
-        //int zFoward = z + 1;
-
-        //int x = pUnitIndex[1];
-        //int xLeft = x - 1;
-        //int xRight = x + 1;
-
-        //int y = pUnitIndex[2];
-        ////int yUp = y + 1;
-        ////int yDown = y - 1;
-
-        ////Check back
-        //if (zBack >= 0)
-        //{
-        //    GameObject upTile = GameObject.Find("Background <" + 18 + 28 +">");
-        //    if (upTile != null && !pList.Contains(upTile))
-        //    {
-        //        upTile.GetComponent<Tile>().tempRange += pRange;
-        //        pList.Add(upTile);
-        //    }
-        //}
-
-        ////Checkfoward
-        //if (zFoward < scriptGrid.gridLength)
-        //{
-        //    GameObject downTile = scriptGrid.grid[zFoward, x, y];
-        //    if (
-        //        downTile.GetComponent<ScriptTile>().range += pRange;
-        //        pList.Add(downTile);
-        //    }downTile != null && !pList.Contains(downTile))
-        //    {
-        //}
-
-        ////CheckLeft
-        //if (xLeft >= 0)
-        //{
-        //    GameObject leftTile = scriptGrid.grid[z, xLeft, y];
-        //    if (leftTile != null && !pList.Contains(leftTile))
-        //    {
-        //        leftTile.GetComponent<ScriptTile>().range += pRange;
-        //        pList.Add(leftTile);
-        //    }
-        //}
-
-        ////CheckRight
-        //if (xRight < scriptGrid.gridWidth)
-        //{
-        //    GameObject rightTile = scriptGrid.grid[z, xRight, y];
-        //    if (rightTile != null && !pList.Contains(rightTile))
-        //    {
-        //        rightTile.GetComponent<ScriptTile>().range += pRange;
-        //        pList.Add(rightTile);
-        //    }
-        //}
-
         return tempList;
     }
 
@@ -190,18 +118,6 @@ public class ScriptPlayer : MonoBehaviour {
         {
             tile.GetComponent<Tile>().LightTile();
         }
-        ////Test the light
-        //foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
-        //{
-        //    if (tile.GetComponent<Tile>().xIndex > xIndex - sightRange &&
-        //        tile.GetComponent<Tile>().xIndex < xIndex + sightRange &&
-        //        tile.GetComponent<Tile>().yIndex > yIndex - sightRange &&
-        //        tile.GetComponent<Tile>().yIndex < yIndex + sightRange)
-        //    {
-        //        tile.GetComponent<Tile>().LightTile();
-        //    }
-
-        //}
     }
 
     #endregion
@@ -236,8 +152,8 @@ public class ScriptPlayer : MonoBehaviour {
 
     void SpawnOrb()
     {
-        
-        GameObject orbInstance = (GameObject)Instantiate(orb, transform.position, Quaternion.identity);
+        Vector2 orbOrigin = new Vector2(transform.position.x, transform.position.y + 0.5f);
+        GameObject orbInstance = (GameObject)Instantiate(orb, orbOrigin, Quaternion.identity);
         Rigidbody2D orbRigid = orbInstance.GetComponent<Rigidbody2D>();
         
         if (right)
@@ -270,11 +186,22 @@ public class ScriptPlayer : MonoBehaviour {
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pPos.normalized, 1f);
         for(int i = 0; i < hit.Length; i++)
         {
-            if(hit[i].collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerName == "Obstacles")
+            GameObject obj = hit[i].collider.gameObject;
+            if (obj.GetComponent<SpriteRenderer>().sortingLayerName == "Obstacles")
             {
-                Debug.Log("Hit wall");
+                //Debug.Log("Hit wall");
                 hitWall = true;
                 break;
+            }
+            if(obj.GetComponent<SpriteRenderer>().sortingLayerName == "Interactive")
+            {
+                if(obj.GetComponentInChildren<Door>() != null)
+                {
+                    Debug.Log("Hit Door");
+                    obj.GetComponent<Door>().OpenDoor();
+                    hitWall = true;
+                    break;
+                }
             }
         }
 
@@ -323,7 +250,7 @@ public class ScriptPlayer : MonoBehaviour {
 
         else if (Input.GetKeyDown(KeyCode.W))
         {
-
+            animator.SetTrigger("walkRight");
             right = left = down = false;
             up = true;
 
@@ -332,7 +259,7 @@ public class ScriptPlayer : MonoBehaviour {
 
         else if (Input.GetKeyDown(KeyCode.S))
         {
-
+            animator.SetTrigger("walkRight");
             right = left = up = false;
             down = true;
 
