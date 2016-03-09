@@ -128,6 +128,7 @@ public class LoadTiles : MonoBehaviour {
                         {
                             tempSprite.name = "Ceiling";
                             tempTile.blocksLight = true;
+                            tempTile.ceiling = true;
                         }
                         if(spriteValue >= 121 && spriteValue <= 158)
                         {

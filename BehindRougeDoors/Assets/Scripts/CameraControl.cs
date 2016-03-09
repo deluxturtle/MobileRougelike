@@ -25,6 +25,9 @@ public class CameraControl : MonoBehaviour {
 
     #endregion
 
+    //Andrew
+    public bool justFollow = true;
+
     void Start()
     {
         myCam = GetComponent<Camera>();
@@ -42,17 +45,24 @@ public class CameraControl : MonoBehaviour {
 
     void Update()
     {
-        transform.Translate(hMovement, vMovement, 0);
-
-        Zoom();
-
-        float tempX = (float)System.Math.Round(Input.acceleration.x, 2);
-        float tempY = (float)System.Math.Round(Input.acceleration.y, 2);
-
-        if ((tempX > 0.02f || tempX < -0.02f) || (tempY > 0.02f || tempY < -0.02f))
+        if (justFollow)
         {
-            transform.Translate(tempX * cameraMoveSpeed, tempY * cameraMoveSpeed, 0f);
-            //print(string.Format("im moving!!!! {0}x {1}y", tempX * cameraMoveSpeed, tempY * cameraMoveSpeed));
+            //Follow me
+        }
+        else
+        {
+            transform.Translate(hMovement, vMovement, 0);
+
+            Zoom();
+
+            float tempX = (float)System.Math.Round(Input.acceleration.x, 2);
+            float tempY = (float)System.Math.Round(Input.acceleration.y, 2);
+
+            if ((tempX > 0.02f || tempX < -0.02f) || (tempY > 0.02f || tempY < -0.02f))
+            {
+                transform.Translate(tempX * cameraMoveSpeed, tempY * cameraMoveSpeed, 0f);
+                //print(string.Format("im moving!!!! {0}x {1}y", tempX * cameraMoveSpeed, tempY * cameraMoveSpeed));
+            }
         }
     }
 

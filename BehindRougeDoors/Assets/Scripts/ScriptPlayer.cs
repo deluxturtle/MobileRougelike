@@ -13,13 +13,15 @@ public class ScriptPlayer : MonoBehaviour {
     int sightRange = 5;
     int xIndex = 3;
     int yIndex = 3;
+    Collider2D myCollider;
 
     List<GameObject> curLitTiles;
-    
+
+    Vector2 targetPos;
 
 	// Use this for initialization
 	void Start () {
-
+        myCollider = GetComponent<Collider2D>();
         LightArea();
 
         left = right = up = false;
@@ -27,7 +29,7 @@ public class ScriptPlayer : MonoBehaviour {
         animator = GetComponent<Animator>();
 	}
 
-    //Background<18, 28>
+    #region LightArea
     void ClearRange()
     {
         foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
@@ -96,7 +98,6 @@ public class ScriptPlayer : MonoBehaviour {
                             {
                                 neighborTile.GetComponent<Tile>().tempRange = range + 1;
                                 tempList.Add(neighborTile);
-
                             }
                         }
                         //if (tempTile.southTile != null && !tempList.Contains(tempTile.southTile))
@@ -203,12 +204,14 @@ public class ScriptPlayer : MonoBehaviour {
         //}
     }
 
+    #endregion
+
     // Update is called once per frame
     void Update()
     {
 
 #if UNITY_EDITOR
-
+        Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
         MoveCharacter();
         if (Input.GetButtonDown("Fire1"))
         {
@@ -261,8 +264,34 @@ public class ScriptPlayer : MonoBehaviour {
         
     }
 
+    void CheckAndMove(Vector2 pPos)
+    {
+        bool hitWall = false;
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pPos.normalized, 1f);
+        for(int i = 0; i < hit.Length; i++)
+        {
+            if(hit[i].collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerName == "Obstacles")
+            {
+                Debug.Log("Hit wall");
+                hitWall = true;
+                break;
+            }
+        }
+
+        //If we didn't detect a wall then move.
+        if (!hitWall)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y) + pPos;
+            xIndex = (int)transform.position.x;
+            yIndex = (int)transform.position.y;
+            LightArea();
+        }
+
+    }
+
     private void MoveCharacter()
     {
+        targetPos = Vector2.zero;
         if (Input.GetKeyDown(KeyCode.D))
         {
 
@@ -273,12 +302,12 @@ public class ScriptPlayer : MonoBehaviour {
 
             GetComponent<SpriteRenderer>().flipX = false;
 
-            transform.position = new Vector2(transform.position.x + 1, transform.position.y);
-            xIndex++;
-            LightArea();
+            targetPos += Vector2.right;
+            //xIndex++;
+
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             
             animator.SetTrigger("walkRight");
@@ -289,35 +318,28 @@ public class ScriptPlayer : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = true;
 
 
-            transform.position = new Vector2(transform.position.x - 1, transform.position.y);
-            xIndex--;
-            LightArea();
+            targetPos += Vector2.left;
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.W))
         {
 
             right = left = down = false;
             up = true;
 
-            transform.position = new Vector2(transform.position.x, transform.position.y + 1);
-            yIndex++;
-            LightArea();
+            targetPos += Vector2.up;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
 
             right = left = up = false;
             down = true;
 
-            transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-
-            yIndex--;
-            LightArea();
+            targetPos += Vector2.down;
         }
 
-        
+        CheckAndMove(targetPos);
 
     }
 }
