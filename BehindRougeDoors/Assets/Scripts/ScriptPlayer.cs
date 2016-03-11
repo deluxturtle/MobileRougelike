@@ -4,6 +4,7 @@ using System;
 
 public class ScriptPlayer : MonoBehaviour {
 
+    public int lightRadius = 2;
     public float moveSpeed = 2.0f;
     public GameObject orb;
 
@@ -97,8 +98,21 @@ public class ScriptPlayer : MonoBehaviour {
                         {
                             if (!tempList.Contains(neighborTile) && !tempTile.blocksLight)
                             {
-                                neighborTile.GetComponent<Tile>().tempRange = range + 1;
-                                tempList.Add(neighborTile);
+                                bool belowLightBlock = false;
+                                foreach(GameObject below in neighborTile.GetComponent<Tile>().topTiles)
+                                {
+                                    if (below.GetComponent<Tile>().blocksLight)
+                                    {
+                                        belowLightBlock = true;
+                                        break;
+                                    }
+                                }
+                                if (!belowLightBlock)
+                                {
+                                    neighborTile.GetComponent<Tile>().tempRange = range + 1;
+                                    tempList.Add(neighborTile);
+                                }
+
                             }
                         }
                     }
@@ -112,7 +126,7 @@ public class ScriptPlayer : MonoBehaviour {
     void LightArea()
     {
 
-        curLitTiles = FindTiles(2);
+        curLitTiles = FindTiles(lightRadius);
 
         foreach(GameObject tile in curLitTiles)
         {
@@ -175,10 +189,10 @@ public class ScriptPlayer : MonoBehaviour {
         }
     }
 
-    void FixedUpdate()
-    {
+    //void FixedUpdate()
+    //{
         
-    }
+    //}
 
     void CheckAndMove(Vector2 pPos)
     {

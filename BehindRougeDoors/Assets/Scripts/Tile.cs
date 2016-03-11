@@ -8,6 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class Tile : MonoBehaviour {
 
+    public LayerMask mask = 1;
     public int xIndex;
     public int yIndex;
     public bool blocksLight = false;
@@ -19,9 +20,12 @@ public class Tile : MonoBehaviour {
     public List<GameObject> southTiles = new List<GameObject>();
     public List<GameObject> eastTiles = new List<GameObject>();
     public List<GameObject> westTiles = new List<GameObject>();
+    public List<GameObject> topTiles = new List<GameObject>();
     bool lit = false;
     
     LoadTiles mapProperties;
+    
+    
 
     //Generates the neighbors list
     public void MakeNeighbors()
@@ -66,6 +70,12 @@ public class Tile : MonoBehaviour {
                     southTiles.Add(tile);
                     neighbors.Add(tile);
                 }
+            }
+            else if(tile.GetComponent<Tile>().yIndex == yIndex &&
+                tile.GetComponent<Tile>().xIndex == xIndex)
+            {
+                //then its on top of this.
+                topTiles.Add(tile);
             }
 
         }

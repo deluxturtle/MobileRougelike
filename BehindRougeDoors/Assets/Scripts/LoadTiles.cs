@@ -11,14 +11,14 @@ public class LoadTiles : MonoBehaviour {
 
     //holds the .xml file.
     public TextAsset[] mapInformation;
-    //private variables
-    GameObject tileParent;
-    private Sprite[] sprites;
-
+    
     public int layerWidth;
     public int layerHeight;
     public GameObject doorObject;
 
+    //private variables
+    GameObject tileParent;
+    private Sprite[] sprites;
 
     //BackgroundLyaer
     GameObject[] tileIndex;
@@ -33,7 +33,9 @@ public class LoadTiles : MonoBehaviour {
     const int OPENDOORONEBOTTOM = 397;
     //const int MUSHROOM = 89;
     //const int POT = 450;
-
+    //781//811
+    const int SPAWNDUDETOP = 781;
+    const int SPAWNDUDEBOTTOM = 811;
 
     void Start()
     {
@@ -136,11 +138,14 @@ public class LoadTiles : MonoBehaviour {
                             tempSprite.name = "Ceiling";
                             tempTile.blocksLight = true;
                             tempTile.ceiling = true;
+                            tempTile.mask = 1 << 8;
                         }
                         if(spriteValue >= 121 && spriteValue <= 158)
                         {
                             tempSprite.name = "Wall";
                             tempTile.wall = true;
+                            tempTile.blocksLight = true;
+                            tempTile.mask = 1 << 8;
                         }
                         //121 158
                     }
@@ -152,15 +157,36 @@ public class LoadTiles : MonoBehaviour {
                             case CLOSEDDOORONETOP:
                                 //Disable the door sprite cuz we are just going to spawn a door object on it.
                                 tempSprite.SetActive(false);
+                                //tempSprite.GetComponent<SpriteRenderer>().sprite = null;
+                                //tempSprite.GetComponent<SpriteRenderer>().enabled = false;
+                                //tempSprite.GetComponent<Tile>().blocksLight = true;
+                                //tempSprite.GetComponent<Tile>().wall = true;
                                 break;
                             case CLOSEDDOORONEBOTTOM:
-                                //Actually disable the door sprite
-                                tempSprite.SetActive(false);
                                 tempSprite.name = "Door";
                                 GameObject door = (GameObject)Instantiate(doorObject, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
                                 door.GetComponent<Tile>().xIndex = horizontalIndex;
                                 door.GetComponent<Tile>().yIndex = verticalIndex;
+                                door.GetComponent<Tile>().blocksLight = true;
                                 door.GetComponent<Tile>().wall = true;
+                                //GameObject doorTop = new GameObject();
+                                //doorTop.transform.position = new Vector2((tileWidth * horizontalIndex), (tileHeight * verticalIndex + 1));
+                                //Tile doorTopTile = doorTop.AddComponent<Tile>();
+                                //doorTopTile.xIndex = horizontalIndex;
+                                //doorTopTile.yIndex = verticalIndex + 1;
+                                //doorTopTile.blocksLight = true;
+                                //doorTopTile.wall = true;
+
+                                //door.GetComponent<Door>().topPart = doorTop;
+                                //Actually disable the door sprite
+                                tempSprite.SetActive(false);
+                                break;
+                            case SPAWNDUDETOP:
+                                tempSprite.SetActive(false);
+                                break;
+                            case SPAWNDUDEBOTTOM:
+                                GameObject.FindGameObjectWithTag("Player").transform.position = tempSprite.transform.position;
+                                tempSprite.SetActive(false);
                                 break;
                             //case MUSHROOM:
                             //    tempSprite.AddComponent<EntityMushroom>();
