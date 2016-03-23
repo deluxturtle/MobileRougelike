@@ -18,7 +18,8 @@ public class LoadTiles : MonoBehaviour {
 
     //private variables
     GameObject tileParent;
-    private Sprite[] sprites;
+    private Sprite[] spritesLevelOne;
+    private Sprite[] spritesLevelTwo;
 
     //BackgroundLyaer
     GameObject[] tileIndex;
@@ -47,7 +48,9 @@ public class LoadTiles : MonoBehaviour {
 	public void LoadMap (int mapNum)
     {
         //Load the tileset into the sprites array
-        sprites = Resources.LoadAll<Sprite>("dungeon_tileset_calciumtrice");
+        spritesLevelOne = Resources.LoadAll<Sprite>("dungeon_tileset_calciumtrice");
+        spritesLevelTwo = Resources.LoadAll<Sprite>("snow-expansion");
+
         XmlDocument xmlDoc = new XmlDocument();
 
         switch (mapNum)
@@ -106,6 +109,16 @@ public class LoadTiles : MonoBehaviour {
                 //if sprite is not empty
                 if(spriteValue > 0)
                 {
+                    Sprite[] currentSpriteSheet = spritesLevelOne;
+                    if (spriteValue > 1050)
+                    {
+                        currentSpriteSheet = spritesLevelTwo;
+                        spriteValue -= 1050;
+                    }
+                    else
+                    {
+                        currentSpriteSheet = spritesLevelOne;
+                    }
                     //create a sprite
                     GameObject tempSprite = new GameObject(layerInfo.Attributes["name"].Value + " <" + horizontalIndex + ", " + verticalIndex + ">");
                     //Add the tile script to it
@@ -116,7 +129,8 @@ public class LoadTiles : MonoBehaviour {
                     //Make a sprite renderer.
                     SpriteRenderer spriteRenderer = tempSprite.AddComponent<SpriteRenderer>();
                     //Get sprite from sheet.
-                    spriteRenderer.sprite = sprites[spriteValue - 1];
+                    //Debug.Log(spriteValue);
+                    spriteRenderer.sprite = currentSpriteSheet[spriteValue - 1];
                     //Set position
                     tempSprite.transform.position = new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex));
                     //Set sorting layer.

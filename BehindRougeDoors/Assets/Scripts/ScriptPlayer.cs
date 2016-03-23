@@ -4,12 +4,14 @@ using System;
 
 public class ScriptPlayer : MonoBehaviour {
 
+
     public int lightRadius = 2;
     public float moveSpeed = 2.0f;
     public GameObject orb;
 
     bool left, right, up, down;
     Animator animator;
+    bool canFire = true;
     float orbSpeed = 20f;
     int sightRange = 5;
     int xIndex = 3;
@@ -20,8 +22,15 @@ public class ScriptPlayer : MonoBehaviour {
 
     Vector2 targetPos;
 
-	// Use this for initialization
-	void Start () {
+    [Tooltip("How long the swipe must be to be registered as a \"Swipe\"")]
+    public int minSwipeDistance = 3;
+    private Vector2 swipeStartPos;
+    private Vector2 swipeCurrentPos;
+    private float swipeMagnitude;
+
+
+    // Use this for initialization
+    void Start () {
         myCollider = GetComponent<Collider2D>();
         LightArea();
 
@@ -139,30 +148,95 @@ public class ScriptPlayer : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        string direction = "";
 #if UNITY_EDITOR
-        Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
-        MoveCharacter();
-        if (Input.GetButtonDown("Fire1"))
+        //Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    animator.SetTrigger("blast");
+        //    Invoke("SpawnOrb", 0.5f);
+        //}
+//#elif UNITY_ANDROID
+        //if(Input.touchCount > 0)
+        //{
+        //    foreach(Touch touch in Input.touches)
+        //    {
+        //        if(touch.phase == TouchPhase.Began)
+        //        {
+        //            SpawnOrb();
+        //        }
+        //    }
+        //}
+
+        	    //If only 1 touch went down
+        if(Input.touchCount == 1)
         {
-            animator.SetTrigger("blast");
-            Invoke("SpawnOrb", 0.5f);
-        }
-#elif UNITY_ANDROID
-        if(Input.touchCount > 0)
-        {
-            foreach(Touch touch in Input.touches)
+            Touch touch = Input.GetTouch(0);
+            //if touch is in the begin phase
+            if(touch.phase == TouchPhase.Began)
             {
-                if(touch.phase == TouchPhase.Began)
+                swipeStartPos = touch.position;
+            }
+
+            //On touch end
+            if(touch.phase == TouchPhase.Ended)
+            {
+                swipeCurrentPos = touch.position;
+                swipeMagnitude = swipeCurrentPos.magnitude - swipeStartPos.magnitude;
+
+                //If the magnitude of the swipe is greater than minSwipeDistance.
+                if(Mathf.Abs(swipeMagnitude) > minSwipeDistance)
                 {
-                    SpawnOrb();
+                    //Debug.Log("Swipe");
+                    //If swiping left or down
+                    if(swipeMagnitude < 0)
+                    {
+                        //if x is greater to the left than going down then we are going left
+                        if(Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
+                        {
+                            print("Left");
+                            direction = "left";
+                        }
+                        else
+                        {
+                            print("Down");
+                            direction = "down";
+                        }
+                    }
+                    //else we are swiping right or up.
+                    else
+                    {
+                        if (Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
+                        {
+                            print("Right");
+                            direction = "right";
+                        }
+                        else
+                        {
+                            print("Up");
+                            direction = "up";
+                        }
+                    }
                 }
+                else
+                {
+                    if (canFire)
+                    {
+                        canFire = false;
+                        animator.SetTrigger("blast");
+                        Invoke("SpawnOrb", 0.5f);
+                    }
+                }
+
             }
         }
+
 #endif
+
+        MoveCharacter(direction);
     }
 
-    
+
 
     void SpawnOrb()
     {
@@ -187,6 +261,7 @@ public class ScriptPlayer : MonoBehaviour {
         {
             orbRigid.velocity = new Vector2(0, -orbSpeed);
         }
+        canFire = true;
     }
 
     //void FixedUpdate()
@@ -230,10 +305,10 @@ public class ScriptPlayer : MonoBehaviour {
 
     }
 
-    private void MoveCharacter()
+    private void MoveCharacter(string pInputDirection)
     {
         targetPos = Vector2.zero;
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || pInputDirection == "right")
         {
 
             animator.SetTrigger("walkRight");
@@ -248,7 +323,7 @@ public class ScriptPlayer : MonoBehaviour {
 
         }
 
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A) || pInputDirection == "left")
         {
             
             animator.SetTrigger("walkRight");
@@ -262,7 +337,7 @@ public class ScriptPlayer : MonoBehaviour {
             targetPos += Vector2.left;
         }
 
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.W) || pInputDirection == "up")
         {
             animator.SetTrigger("walkRight");
             right = left = down = false;
@@ -271,7 +346,7 @@ public class ScriptPlayer : MonoBehaviour {
             targetPos += Vector2.up;
         }
 
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S) || pInputDirection == "down")
         {
             animator.SetTrigger("walkRight");
             right = left = up = false;

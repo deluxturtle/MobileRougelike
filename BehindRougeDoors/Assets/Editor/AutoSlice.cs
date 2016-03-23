@@ -12,7 +12,7 @@ public class AutoSlice : MonoBehaviour {
     static void Slice()
     {
         //Load in the texture from the project folder.
-        Texture2D myTex = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Resources/dungeon_tileset_calciumtrice.png", typeof(Texture2D));
+        Texture2D myTex = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Resources/snow-expansion.png", typeof(Texture2D));
         //Holds the path to the file.
         string path = AssetDatabase.GetAssetPath(myTex);
 
@@ -58,9 +58,9 @@ public class AutoSlice : MonoBehaviour {
 
             }
         }
-
+        
         SpriteMetaData[] tempSpriteSheet = newData.ToArray();
-
+        Debug.Log(tempSpriteSheet.Length);
         //set the sprite sheet to the list we just created.
         ti.spritesheet = tempSpriteSheet;
         ti.spriteImportMode = SpriteImportMode.Multiple;
