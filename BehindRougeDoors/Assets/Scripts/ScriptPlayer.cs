@@ -13,10 +13,10 @@ public class ScriptPlayer : MonoBehaviour {
     Animator animator;
     bool canFire = true;
     float orbSpeed = 20f;
-    int sightRange = 5;
-    int xIndex = 3;
-    int yIndex = 3;
-    Collider2D myCollider;
+    //int sightRange = 5;
+    public int xIndex = 3;
+    public int yIndex = 3;
+    //Collider2D myCollider;
 
     List<GameObject> curLitTiles;
 
@@ -31,13 +31,18 @@ public class ScriptPlayer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        myCollider = GetComponent<Collider2D>();
+        //myCollider = GetComponent<Collider2D>();
         LightArea();
 
         left = right = up = false;
         down = true;
         animator = GetComponent<Animator>();
-	}
+        
+        //Initialize 
+        xIndex = (int)transform.position.x;
+        yIndex = (int)transform.position.y;
+        LightArea();
+    }
 
     #region LightArea
     void ClearRange()
@@ -107,21 +112,25 @@ public class ScriptPlayer : MonoBehaviour {
                         {
                             if (!tempList.Contains(neighborTile) && !tempTile.blocksLight)
                             {
-                                bool belowLightBlock = false;
-                                foreach(GameObject below in neighborTile.GetComponent<Tile>().topTiles)
-                                {
-                                    if (below.GetComponent<Tile>().blocksLight)
+                                Vector2 direction = (transform.position - neighborTile.transform.position);
+                                //if(!Physics2D.Raycast(transform.position, direction, lightRadius,))
+                                //{
+                                    
+                                    bool belowLightBlock = false;
+                                    foreach(GameObject below in neighborTile.GetComponent<Tile>().topTiles)
                                     {
-                                        belowLightBlock = true;
-                                        break;
+                                        if (below.GetComponent<Tile>().blocksLight)
+                                        {
+                                            belowLightBlock = true;
+                                            break;
+                                        }
                                     }
-                                }
-                                if (!belowLightBlock)
-                                {
-                                    neighborTile.GetComponent<Tile>().tempRange = range + 1;
-                                    tempList.Add(neighborTile);
-                                }
-
+                                    if (!belowLightBlock)
+                                    {
+                                        neighborTile.GetComponent<Tile>().tempRange = range + 1;
+                                        tempList.Add(neighborTile);
+                                    }
+                                //}
                             }
                         }
                     }
@@ -149,14 +158,14 @@ public class ScriptPlayer : MonoBehaviour {
     void Update()
     {
         string direction = "";
-#if UNITY_EDITOR
-        //Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
-        //if (Input.GetButtonDown("Fire1"))
-        //{
-        //    animator.SetTrigger("blast");
-        //    Invoke("SpawnOrb", 0.5f);
-        //}
-//#elif UNITY_ANDROID
+//#if UNITY_EDITOR
+//        Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
+//        if (Input.GetButtonDown("Fire1"))
+//        {
+//            animator.SetTrigger("blast");
+//            Invoke("SpawnOrb", 0.5f);
+//        }
+//#elif MOBILE_INPUT
         //if(Input.touchCount > 0)
         //{
         //    foreach(Touch touch in Input.touches)
@@ -231,7 +240,7 @@ public class ScriptPlayer : MonoBehaviour {
             }
         }
 
-#endif
+//#endif
 
         MoveCharacter(direction);
     }

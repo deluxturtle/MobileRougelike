@@ -15,6 +15,8 @@ public class LoadTiles : MonoBehaviour {
     public int layerWidth;
     public int layerHeight;
     public GameObject doorObject;
+    public GameObject player;
+
 
     //private variables
     GameObject tileParent;
@@ -32,11 +34,13 @@ public class LoadTiles : MonoBehaviour {
     const int OPENDOORONETOP = 338;
     const int OPENDOORONEMIDDLE = 368;
     const int OPENDOORONEBOTTOM = 397;
-    //const int MUSHROOM = 89;
-    //const int POT = 450;
-    //781//811
+    //Spawn Point Guy
     const int SPAWNDUDETOP = 781;
     const int SPAWNDUDEBOTTOM = 811;
+    //Skeletons
+    const int SKELETONTOP = 883;
+    const int SKELETONBOTTOM = 913;
+
 
     void Start()
     {
@@ -89,7 +93,7 @@ public class LoadTiles : MonoBehaviour {
             layerWidth = int.Parse(layerInfo.Attributes["width"].Value);
             layerHeight = int.Parse(layerInfo.Attributes["height"].Value);
 
-            Debug.Log(layerInfo.Attributes["name"].Value);
+            //Debug.Log(layerInfo.Attributes["name"].Value);
 
             ////In the background layer in the xml
             //if(layerInfo.Attributes["name"].Value == "Background")
@@ -199,7 +203,7 @@ public class LoadTiles : MonoBehaviour {
                                 tempSprite.SetActive(false);
                                 break;
                             case SPAWNDUDEBOTTOM:
-                                GameObject.FindGameObjectWithTag("Player").transform.position = tempSprite.transform.position;
+                                player.transform.position = tempSprite.transform.position;
                                 tempSprite.SetActive(false);
                                 break;
                             //case MUSHROOM:
