@@ -10,11 +10,17 @@ using System;
 public class LoadTiles : MonoBehaviour {
 
     //holds the .xml file.
+    [Header("Map Info")]
     public TextAsset[] mapInformation;
-    
     public int layerWidth;
     public int layerHeight;
+    [Header("Interactive Props")]
     public GameObject doorObject;
+
+    [Header("Enemies")]
+    public GameObject skeleton;
+    
+    [Header("Other")]
     public GameObject player;
 
 
@@ -42,7 +48,7 @@ public class LoadTiles : MonoBehaviour {
     const int SKELETONBOTTOM = 913;
 
 
-    void Start()
+    void Awake()
     {
         tileParent = new GameObject();
         LoadMap(UnityEngine.Random.Range(0, mapInformation.Length));
@@ -206,12 +212,16 @@ public class LoadTiles : MonoBehaviour {
                                 player.transform.position = tempSprite.transform.position;
                                 tempSprite.SetActive(false);
                                 break;
-                            //case MUSHROOM:
-                            //    tempSprite.AddComponent<EntityMushroom>();
-                            //    break;
-                            //case POT:
-                            //    tempSprite.AddComponent<EntityPot>();
-                            //    break;
+                            case SKELETONTOP:
+                                tempSprite.SetActive(false);
+                                break;
+                            case SKELETONBOTTOM:
+                                tempSprite.SetActive(false);
+                                GameObject tempSkeleton = (GameObject)Instantiate(skeleton, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
+                                tempSkeleton.transform.position = tempSprite.transform.position;
+                                tempSkeleton.GetComponentInChildren<ScriptSkeleton>().xIndex = horizontalIndex;
+                                tempSkeleton.GetComponentInChildren<ScriptSkeleton>().yIndex = verticalIndex;
+                                break;
                         }
                     }
 

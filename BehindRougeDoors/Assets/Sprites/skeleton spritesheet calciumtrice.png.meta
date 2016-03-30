@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d9cfa1a8f960a0d4ea9451c64a1ecbd6
-timeCreated: 1459285840
+timeCreated: 1459291165
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -107,18 +107,18 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_1
       rect:
         serializedVersion: 2
@@ -126,16 +126,16 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 7}
-        - {x: -9, y: -12}
-        - {x: -6, y: -16}
-        - {x: 9, y: -16}
-        - {x: 9, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 15}
+        - {x: -9, y: -4}
+        - {x: -6, y: -8}
+        - {x: 9, y: -8}
+        - {x: 9, y: 24}
     - name: skeleton spritesheet calciumtrice_2
       rect:
         serializedVersion: 2
@@ -143,18 +143,18 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_3
       rect:
         serializedVersion: 2
@@ -162,16 +162,16 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 7}
-        - {x: -9, y: -12}
-        - {x: -6, y: -16}
-        - {x: 9, y: -16}
-        - {x: 9, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 15}
+        - {x: -9, y: -4}
+        - {x: -6, y: -8}
+        - {x: 9, y: -8}
+        - {x: 9, y: 24}
     - name: skeleton spritesheet calciumtrice_4
       rect:
         serializedVersion: 2
@@ -179,18 +179,18 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_5
       rect:
         serializedVersion: 2
@@ -198,16 +198,16 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 7}
-        - {x: -9, y: -12}
-        - {x: -6, y: -16}
-        - {x: 9, y: -16}
-        - {x: 9, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 15}
+        - {x: -9, y: -4}
+        - {x: -6, y: -8}
+        - {x: 9, y: -8}
+        - {x: 9, y: 24}
     - name: skeleton spritesheet calciumtrice_6
       rect:
         serializedVersion: 2
@@ -215,18 +215,18 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_7
       rect:
         serializedVersion: 2
@@ -234,16 +234,16 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 7}
-        - {x: -9, y: -12}
-        - {x: -6, y: -16}
-        - {x: 9, y: -16}
-        - {x: 9, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 15}
+        - {x: -9, y: -4}
+        - {x: -6, y: -8}
+        - {x: 9, y: -8}
+        - {x: 9, y: 24}
     - name: skeleton spritesheet calciumtrice_8
       rect:
         serializedVersion: 2
@@ -251,18 +251,18 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_9
       rect:
         serializedVersion: 2
@@ -270,16 +270,16 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 7}
-        - {x: -9, y: -12}
-        - {x: -6, y: -16}
-        - {x: 9, y: -16}
-        - {x: 9, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 15}
+        - {x: -9, y: -4}
+        - {x: -6, y: -8}
+        - {x: 9, y: -8}
+        - {x: 9, y: 24}
     - name: skeleton spritesheet calciumtrice_10
       rect:
         serializedVersion: 2
@@ -287,18 +287,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_11
       rect:
         serializedVersion: 2
@@ -306,18 +306,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -13}
-        - {x: -8, y: -16}
-        - {x: 6, y: -16}
-        - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -5}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_12
       rect:
         serializedVersion: 2
@@ -325,18 +325,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 7, y: 16}
-        - {x: -5, y: 16}
-        - {x: -10, y: 1}
-        - {x: -10, y: -10}
-        - {x: -6, y: -16}
-        - {x: 6, y: -16}
-        - {x: 10, y: -5}
-        - {x: 10, y: 0}
+      - - {x: 7, y: 24}
+        - {x: -5, y: 24}
+        - {x: -10, y: 9}
+        - {x: -10, y: -2}
+        - {x: -6, y: -8}
+        - {x: 6, y: -8}
+        - {x: 10, y: 3}
+        - {x: 10, y: 8}
     - name: skeleton spritesheet calciumtrice_13
       rect:
         serializedVersion: 2
@@ -344,18 +344,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -11, y: 5}
-        - {x: -11, y: -5}
-        - {x: -7, y: -16}
-        - {x: 9, y: -16}
-        - {x: 11, y: -5}
-        - {x: 11, y: 4}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -11, y: 13}
+        - {x: -11, y: 3}
+        - {x: -7, y: -8}
+        - {x: 9, y: -8}
+        - {x: 11, y: 3}
+        - {x: 11, y: 12}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_14
       rect:
         serializedVersion: 2
@@ -363,17 +363,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -12, y: 1}
-        - {x: -13, y: -2}
-        - {x: -12, y: -16}
-        - {x: 13, y: -16}
-        - {x: 13, y: 1}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -12, y: 9}
+        - {x: -13, y: 6}
+        - {x: -12, y: -8}
+        - {x: 13, y: -8}
+        - {x: 13, y: 9}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_15
       rect:
         serializedVersion: 2
@@ -381,17 +381,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 16}
-        - {x: -13, y: 1}
-        - {x: -13, y: -5}
-        - {x: -7, y: -16}
-        - {x: 13, y: -16}
-        - {x: 13, y: 5}
-        - {x: 5, y: 16}
+      - - {x: -7, y: 24}
+        - {x: -13, y: 9}
+        - {x: -13, y: 3}
+        - {x: -7, y: -8}
+        - {x: 13, y: -8}
+        - {x: 13, y: 13}
+        - {x: 5, y: 24}
     - name: skeleton spritesheet calciumtrice_16
       rect:
         serializedVersion: 2
@@ -399,20 +399,20 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 3, y: 16}
-        - {x: -5, y: 16}
-        - {x: -14, y: 5}
-        - {x: -14, y: 1}
-        - {x: -13, y: -1}
-        - {x: -14, y: -16}
-        - {x: 13, y: -16}
-        - {x: 13, y: 1}
-        - {x: 12, y: 4}
-        - {x: 5, y: 14}
+      - - {x: 3, y: 24}
+        - {x: -5, y: 24}
+        - {x: -14, y: 13}
+        - {x: -14, y: 9}
+        - {x: -13, y: 7}
+        - {x: -14, y: -8}
+        - {x: 13, y: -8}
+        - {x: 13, y: 9}
+        - {x: 12, y: 12}
+        - {x: 5, y: 22}
     - name: skeleton spritesheet calciumtrice_17
       rect:
         serializedVersion: 2
@@ -420,18 +420,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: 16}
-        - {x: -14, y: 3}
-        - {x: -14, y: -13}
-        - {x: -13, y: -16}
-        - {x: 12, y: -16}
-        - {x: 13, y: -7}
-        - {x: 13, y: 0}
-        - {x: 4, y: 16}
+      - - {x: -4, y: 24}
+        - {x: -14, y: 11}
+        - {x: -14, y: -5}
+        - {x: -13, y: -8}
+        - {x: 12, y: -8}
+        - {x: 13, y: 1}
+        - {x: 13, y: 8}
+        - {x: 4, y: 24}
     - name: skeleton spritesheet calciumtrice_18
       rect:
         serializedVersion: 2
@@ -439,25 +439,25 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 6, y: -2}
-        - {x: 8, y: -5}
-        - {x: 11, y: -4}
-        - {x: 11, y: -1}
-        - {x: 7, y: 16}
-        - {x: -5, y: 16}
-        - {x: -12, y: -1}
-        - {x: -12, y: -4}
-        - {x: -10, y: -5}
-        - {x: -7, y: -4}
-        - {x: -7, y: -16}
-        - {x: -1, y: -16}
-        - {x: -1, y: -6}
-        - {x: 0, y: -16}
-        - {x: 6, y: -16}
+      - - {x: 6, y: 6}
+        - {x: 8, y: 3}
+        - {x: 11, y: 4}
+        - {x: 11, y: 7}
+        - {x: 7, y: 24}
+        - {x: -5, y: 24}
+        - {x: -12, y: 7}
+        - {x: -12, y: 4}
+        - {x: -10, y: 3}
+        - {x: -7, y: 4}
+        - {x: -7, y: -8}
+        - {x: -1, y: -8}
+        - {x: -1, y: 2}
+        - {x: 0, y: -8}
+        - {x: 6, y: -8}
     - name: skeleton spritesheet calciumtrice_19
       rect:
         serializedVersion: 2
@@ -465,18 +465,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 7, y: 16}
-        - {x: -5, y: 16}
-        - {x: -10, y: 1}
-        - {x: -10, y: -10}
-        - {x: -6, y: -16}
-        - {x: 6, y: -16}
-        - {x: 10, y: -5}
-        - {x: 10, y: 0}
+      - - {x: 7, y: 24}
+        - {x: -5, y: 24}
+        - {x: -10, y: 9}
+        - {x: -10, y: -2}
+        - {x: -6, y: -8}
+        - {x: 6, y: -8}
+        - {x: 10, y: 3}
+        - {x: 10, y: 8}
     - name: skeleton spritesheet calciumtrice_20
       rect:
         serializedVersion: 2
@@ -484,18 +484,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 9, y: -10}
-        - {x: 9, y: 6}
-        - {x: 7, y: 16}
-        - {x: -6, y: 16}
-        - {x: -9, y: 6}
-        - {x: -9, y: -11}
-        - {x: -6, y: -16}
-        - {x: 7, y: -16}
+      - - {x: 9, y: -2}
+        - {x: 9, y: 14}
+        - {x: 7, y: 24}
+        - {x: -6, y: 24}
+        - {x: -9, y: 14}
+        - {x: -9, y: -3}
+        - {x: -6, y: -8}
+        - {x: 7, y: -8}
     - name: skeleton spritesheet calciumtrice_21
       rect:
         serializedVersion: 2
@@ -503,17 +503,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 16}
-        - {x: -10, y: 11}
-        - {x: -10, y: -9}
-        - {x: -9, y: -16}
-        - {x: 8, y: -16}
-        - {x: 8, y: 9}
-        - {x: 7, y: 16}
+      - - {x: -6, y: 24}
+        - {x: -10, y: 19}
+        - {x: -10, y: -1}
+        - {x: -9, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 17}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_22
       rect:
         serializedVersion: 2
@@ -521,16 +521,16 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -8, y: 11}
-        - {x: -8, y: -16}
-        - {x: 9, y: -16}
-        - {x: 9, y: 5}
-        - {x: 8, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -8, y: 19}
+        - {x: -8, y: -8}
+        - {x: 9, y: -8}
+        - {x: 9, y: 13}
+        - {x: 8, y: 24}
     - name: skeleton spritesheet calciumtrice_23
       rect:
         serializedVersion: 2
@@ -538,16 +538,16 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 8, y: 8}
-        - {x: 8, y: 16}
-        - {x: -4, y: 16}
-        - {x: -7, y: 9}
-        - {x: -7, y: -16}
-        - {x: 9, y: -16}
+      - - {x: 8, y: 16}
+        - {x: 8, y: 24}
+        - {x: -4, y: 24}
+        - {x: -7, y: 17}
+        - {x: -7, y: -8}
+        - {x: 9, y: -8}
     - name: skeleton spritesheet calciumtrice_24
       rect:
         serializedVersion: 2
@@ -555,17 +555,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 16}
-        - {x: -9, y: 7}
-        - {x: -9, y: -7}
-        - {x: -6, y: -16}
-        - {x: 8, y: -16}
-        - {x: 8, y: 10}
-        - {x: 4, y: 16}
+      - - {x: -3, y: 24}
+        - {x: -9, y: 15}
+        - {x: -9, y: 1}
+        - {x: -6, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 18}
+        - {x: 4, y: 24}
     - name: skeleton spritesheet calciumtrice_25
       rect:
         serializedVersion: 2
@@ -573,18 +573,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 9, y: -10}
-        - {x: 9, y: 9}
-        - {x: 8, y: 16}
-        - {x: -5, y: 16}
+      - - {x: 9, y: -2}
+        - {x: 9, y: 17}
+        - {x: 8, y: 24}
+        - {x: -5, y: 24}
+        - {x: -11, y: 15}
         - {x: -11, y: 7}
-        - {x: -11, y: -1}
-        - {x: -6, y: -16}
-        - {x: 7, y: -16}
+        - {x: -6, y: -8}
+        - {x: 7, y: -8}
     - name: skeleton spritesheet calciumtrice_26
       rect:
         serializedVersion: 2
@@ -592,19 +592,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 16}
-        - {x: -11, y: 3}
-        - {x: -11, y: -6}
-        - {x: -6, y: -15}
-        - {x: -5, y: -16}
-        - {x: 10, y: -16}
-        - {x: 12, y: -1}
-        - {x: 12, y: 4}
-        - {x: 5, y: 16}
+      - - {x: -8, y: 24}
+        - {x: -11, y: 11}
+        - {x: -11, y: 2}
+        - {x: -6, y: -7}
+        - {x: -5, y: -8}
+        - {x: 10, y: -8}
+        - {x: 12, y: 7}
+        - {x: 12, y: 12}
+        - {x: 5, y: 24}
     - name: skeleton spritesheet calciumtrice_27
       rect:
         serializedVersion: 2
@@ -612,19 +612,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 16}
-        - {x: -11, y: 9}
-        - {x: -11, y: -5}
-        - {x: -8, y: -15}
-        - {x: -7, y: -16}
-        - {x: 7, y: -16}
-        - {x: 13, y: 2}
-        - {x: 13, y: 7}
-        - {x: 7, y: 16}
+      - - {x: -6, y: 24}
+        - {x: -11, y: 17}
+        - {x: -11, y: 3}
+        - {x: -8, y: -7}
+        - {x: -7, y: -8}
+        - {x: 7, y: -8}
+        - {x: 13, y: 10}
+        - {x: 13, y: 15}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_28
       rect:
         serializedVersion: 2
@@ -632,21 +632,21 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 5, y: 16}
-        - {x: -4, y: 16}
-        - {x: -10, y: 7}
-        - {x: -10, y: -3}
-        - {x: -8, y: -5}
-        - {x: -5, y: -4}
-        - {x: -4, y: -16}
-        - {x: 7, y: -16}
-        - {x: 13, y: -6}
-        - {x: 13, y: 3}
-        - {x: 11, y: 8}
+      - - {x: 5, y: 24}
+        - {x: -4, y: 24}
+        - {x: -10, y: 15}
+        - {x: -10, y: 5}
+        - {x: -8, y: 3}
+        - {x: -5, y: 4}
+        - {x: -4, y: -8}
+        - {x: 7, y: -8}
+        - {x: 13, y: 2}
+        - {x: 13, y: 11}
+        - {x: 11, y: 16}
     - name: skeleton spritesheet calciumtrice_29
       rect:
         serializedVersion: 2
@@ -654,19 +654,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 3, y: 16}
-        - {x: -3, y: 16}
-        - {x: -9, y: 9}
-        - {x: -9, y: -11}
-        - {x: -8, y: -16}
-        - {x: 8, y: -16}
-        - {x: 12, y: -6}
-        - {x: 12, y: 1}
-        - {x: 8, y: 15}
+      - - {x: 3, y: 24}
+        - {x: -3, y: 24}
+        - {x: -9, y: 17}
+        - {x: -9, y: -3}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 12, y: 2}
+        - {x: 12, y: 9}
+        - {x: 8, y: 23}
     - name: skeleton spritesheet calciumtrice_30
       rect:
         serializedVersion: 2
@@ -674,18 +674,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 16}
-        - {x: -9, y: 11}
-        - {x: -9, y: -12}
-        - {x: -8, y: -16}
-        - {x: 7, y: -16}
-        - {x: 9, y: -11}
-        - {x: 9, y: 6}
-        - {x: 8, y: 16}
+      - - {x: -6, y: 24}
+        - {x: -9, y: 19}
+        - {x: -9, y: -4}
+        - {x: -8, y: -8}
+        - {x: 7, y: -8}
+        - {x: 9, y: -3}
+        - {x: 9, y: 14}
+        - {x: 8, y: 24}
     - name: skeleton spritesheet calciumtrice_31
       rect:
         serializedVersion: 2
@@ -693,15 +693,15 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -8, y: 9}
-        - {x: -8, y: -16}
-        - {x: 11, y: -16}
-        - {x: 11, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -8, y: 17}
+        - {x: -8, y: -8}
+        - {x: 11, y: -8}
+        - {x: 11, y: 24}
     - name: skeleton spritesheet calciumtrice_32
       rect:
         serializedVersion: 2
@@ -709,19 +709,19 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 14, y: 0}
-        - {x: 14, y: 2}
-        - {x: 7, y: 15}
-        - {x: 5, y: 16}
-        - {x: -5, y: 16}
-        - {x: -8, y: 10}
-        - {x: -8, y: -6}
-        - {x: -7, y: -16}
-        - {x: 7, y: -16}
+      - - {x: 14, y: 8}
+        - {x: 14, y: 10}
+        - {x: 7, y: 23}
+        - {x: 5, y: 24}
+        - {x: -5, y: 24}
+        - {x: -8, y: 18}
+        - {x: -8, y: 2}
+        - {x: -7, y: -8}
+        - {x: 7, y: -8}
     - name: skeleton spritesheet calciumtrice_33
       rect:
         serializedVersion: 2
@@ -729,16 +729,16 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 16}
-        - {x: -8, y: -16}
-        - {x: 7, y: -16}
-        - {x: 16, y: 0}
-        - {x: 16, y: 6}
-        - {x: 8, y: 16}
+      - - {x: -8, y: 24}
+        - {x: -8, y: -8}
+        - {x: 7, y: -8}
+        - {x: 16, y: 8}
+        - {x: 16, y: 14}
+        - {x: 8, y: 24}
     - name: skeleton spritesheet calciumtrice_34
       rect:
         serializedVersion: 2
@@ -746,22 +746,22 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 13, y: 5}
-        - {x: 13, y: 8}
-        - {x: 13, y: 5}
-        - {x: 15, y: 3}
-        - {x: 16, y: 3}
-        - {x: 16, y: 14}
-        - {x: 15, y: 16}
-        - {x: -4, y: 16}
-        - {x: -7, y: 8}
-        - {x: -8, y: -11}
-        - {x: -8, y: -16}
-        - {x: 7, y: -16}
+      - - {x: 13, y: 13}
+        - {x: 13, y: 16}
+        - {x: 13, y: 13}
+        - {x: 15, y: 11}
+        - {x: 16, y: 11}
+        - {x: 16, y: 22}
+        - {x: 15, y: 24}
+        - {x: -4, y: 24}
+        - {x: -7, y: 16}
+        - {x: -8, y: -3}
+        - {x: -8, y: -8}
+        - {x: 7, y: -8}
     - name: skeleton spritesheet calciumtrice_35
       rect:
         serializedVersion: 2
@@ -769,17 +769,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 12, y: 16}
-        - {x: -5, y: 16}
-        - {x: -8, y: 1}
-        - {x: -8, y: -16}
-        - {x: 13, y: -16}
-        - {x: 16, y: -7}
-        - {x: 16, y: 14}
+      - - {x: 12, y: 24}
+        - {x: -5, y: 24}
+        - {x: -8, y: 9}
+        - {x: -8, y: -8}
+        - {x: 13, y: -8}
+        - {x: 16, y: 1}
+        - {x: 16, y: 22}
     - name: skeleton spritesheet calciumtrice_36
       rect:
         serializedVersion: 2
@@ -787,17 +787,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 16, y: -3}
-        - {x: 16, y: 15}
-        - {x: 15, y: 16}
-        - {x: -6, y: 16}
-        - {x: -8, y: 9}
-        - {x: -8, y: -16}
-        - {x: 7, y: -16}
+      - - {x: 16, y: 5}
+        - {x: 16, y: 23}
+        - {x: 15, y: 24}
+        - {x: -6, y: 24}
+        - {x: -8, y: 17}
+        - {x: -8, y: -8}
+        - {x: 7, y: -8}
     - name: skeleton spritesheet calciumtrice_37
       rect:
         serializedVersion: 2
@@ -805,17 +805,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 12, y: 16}
-        - {x: -5, y: 16}
-        - {x: -8, y: 1}
-        - {x: -8, y: -16}
-        - {x: 13, y: -16}
-        - {x: 16, y: -7}
-        - {x: 16, y: 14}
+      - - {x: 12, y: 24}
+        - {x: -5, y: 24}
+        - {x: -8, y: 9}
+        - {x: -8, y: -8}
+        - {x: 13, y: -8}
+        - {x: 16, y: 1}
+        - {x: 16, y: 22}
     - name: skeleton spritesheet calciumtrice_38
       rect:
         serializedVersion: 2
@@ -823,16 +823,16 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 7, y: 16}
-        - {x: -7, y: 16}
-        - {x: -7, y: -16}
-        - {x: 7, y: -16}
-        - {x: 13, y: -2}
-        - {x: 13, y: 12}
+      - - {x: 7, y: 24}
+        - {x: -7, y: 24}
+        - {x: -7, y: -8}
+        - {x: 7, y: -8}
+        - {x: 13, y: 6}
+        - {x: 13, y: 20}
     - name: skeleton spritesheet calciumtrice_39
       rect:
         serializedVersion: 2
@@ -840,17 +840,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -8, y: 10}
-        - {x: -8, y: -7}
-        - {x: -7, y: -16}
-        - {x: 7, y: -16}
-        - {x: 11, y: -2}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -8, y: 18}
+        - {x: -8, y: 1}
+        - {x: -7, y: -8}
+        - {x: 7, y: -8}
+        - {x: 11, y: 6}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_40
       rect:
         serializedVersion: 2
@@ -858,18 +858,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 16}
-        - {x: -11, y: 8}
-        - {x: -11, y: -4}
-        - {x: -9, y: -16}
-        - {x: 6, y: -16}
-        - {x: 11, y: -2}
-        - {x: 11, y: 3}
-        - {x: 7, y: 16}
+      - - {x: -5, y: 24}
+        - {x: -11, y: 16}
+        - {x: -11, y: 4}
+        - {x: -9, y: -8}
+        - {x: 6, y: -8}
+        - {x: 11, y: 6}
+        - {x: 11, y: 11}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_41
       rect:
         serializedVersion: 2
@@ -877,17 +877,17 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 16}
-        - {x: -12, y: 8}
-        - {x: -12, y: -2}
-        - {x: -6, y: -16}
-        - {x: 6, y: -16}
-        - {x: 12, y: -9}
-        - {x: 12, y: 16}
+      - - {x: -6, y: 24}
+        - {x: -12, y: 16}
+        - {x: -12, y: 6}
+        - {x: -6, y: -8}
+        - {x: 6, y: -8}
+        - {x: 12, y: -1}
+        - {x: 12, y: 24}
     - name: skeleton spritesheet calciumtrice_42
       rect:
         serializedVersion: 2
@@ -895,19 +895,19 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 3, y: 16}
-        - {x: -4, y: 16}
-        - {x: -11, y: 8}
-        - {x: -11, y: 6}
-        - {x: -6, y: -16}
-        - {x: 6, y: -16}
-        - {x: 11, y: -11}
-        - {x: 11, y: 7}
-        - {x: 10, y: 9}
+      - - {x: 3, y: 24}
+        - {x: -4, y: 24}
+        - {x: -11, y: 16}
+        - {x: -11, y: 14}
+        - {x: -6, y: -8}
+        - {x: 6, y: -8}
+        - {x: 11, y: -3}
+        - {x: 11, y: 15}
+        - {x: 10, y: 17}
     - name: skeleton spritesheet calciumtrice_43
       rect:
         serializedVersion: 2
@@ -915,18 +915,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 4, y: 16}
-        - {x: -4, y: 16}
+      - - {x: 4, y: 24}
+        - {x: -4, y: 24}
+        - {x: -11, y: 17}
         - {x: -11, y: 9}
-        - {x: -11, y: 1}
-        - {x: -7, y: -16}
-        - {x: 6, y: -16}
-        - {x: 10, y: 0}
+        - {x: -7, y: -8}
+        - {x: 6, y: -8}
         - {x: 10, y: 8}
+        - {x: 10, y: 16}
     - name: skeleton spritesheet calciumtrice_44
       rect:
         serializedVersion: 2
@@ -934,17 +934,17 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 16}
-        - {x: -10, y: 13}
-        - {x: -10, y: -16}
-        - {x: 9, y: -16}
-        - {x: 10, y: -12}
-        - {x: 10, y: 12}
-        - {x: 6, y: 16}
+      - - {x: -9, y: 24}
+        - {x: -10, y: 21}
+        - {x: -10, y: -8}
+        - {x: 9, y: -8}
+        - {x: 10, y: -4}
+        - {x: 10, y: 20}
+        - {x: 6, y: 24}
     - name: skeleton spritesheet calciumtrice_45
       rect:
         serializedVersion: 2
@@ -952,16 +952,16 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 16}
-        - {x: -9, y: 10}
-        - {x: -9, y: -16}
-        - {x: 10, y: -16}
-        - {x: 10, y: 6}
-        - {x: 7, y: 16}
+      - - {x: -6, y: 24}
+        - {x: -9, y: 18}
+        - {x: -9, y: -8}
+        - {x: 10, y: -8}
+        - {x: 10, y: 14}
+        - {x: 7, y: 24}
     - name: skeleton spritesheet calciumtrice_46
       rect:
         serializedVersion: 2
@@ -969,23 +969,23 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 2, y: 14}
-        - {x: -5, y: 14}
-        - {x: -10, y: 6}
-        - {x: -9, y: 4}
-        - {x: -7, y: 2}
-        - {x: 2, y: 2}
-        - {x: -9, y: 2}
-        - {x: -10, y: 0}
-        - {x: -10, y: -7}
-        - {x: -9, y: -16}
-        - {x: 10, y: -16}
-        - {x: 10, y: 9}
-        - {x: 8, y: 11}
+      - - {x: 2, y: 22}
+        - {x: -5, y: 22}
+        - {x: -10, y: 14}
+        - {x: -9, y: 12}
+        - {x: -7, y: 10}
+        - {x: 2, y: 10}
+        - {x: -9, y: 10}
+        - {x: -10, y: 8}
+        - {x: -10, y: 1}
+        - {x: -9, y: -8}
+        - {x: 10, y: -8}
+        - {x: 10, y: 17}
+        - {x: 8, y: 19}
     - name: skeleton spritesheet calciumtrice_47
       rect:
         serializedVersion: 2
@@ -993,25 +993,25 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 0}
-        - {x: -8, y: -1}
-        - {x: -11, y: -7}
-        - {x: -11, y: -16}
-        - {x: 14, y: -16}
-        - {x: 14, y: -3}
-        - {x: 13, y: 0}
-      - - {x: -9, y: -1}
-        - {x: -8, y: -3}
-        - {x: -3, y: -3}
-        - {x: 6, y: 1}
-        - {x: 6, y: 5}
-        - {x: 4, y: 10}
-        - {x: -3, y: 10}
+      - - {x: -5, y: 8}
+        - {x: -8, y: 7}
+        - {x: -11, y: 1}
+        - {x: -11, y: -8}
+        - {x: 14, y: -8}
+        - {x: 14, y: 5}
+        - {x: 13, y: 8}
+      - - {x: -9, y: 7}
         - {x: -8, y: 5}
+        - {x: -3, y: 5}
+        - {x: 6, y: 9}
+        - {x: 6, y: 13}
+        - {x: 4, y: 18}
+        - {x: -3, y: 18}
+        - {x: -8, y: 13}
     - name: skeleton spritesheet calciumtrice_48
       rect:
         serializedVersion: 2
@@ -1019,15 +1019,15 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 3}
-        - {x: -10, y: 1}
-        - {x: -10, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 3}
+      - - {x: -8, y: 11}
+        - {x: -10, y: 9}
+        - {x: -10, y: -8}
+        - {x: 15, y: -8}
+        - {x: 15, y: 11}
     - name: skeleton spritesheet calciumtrice_49
       rect:
         serializedVersion: 2
@@ -1035,16 +1035,16 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: -4}
-        - {x: -12, y: -13}
-        - {x: -12, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -14}
-        - {x: 4, y: -4}
+      - - {x: -4, y: 4}
+        - {x: -12, y: -5}
+        - {x: -12, y: -8}
+        - {x: 15, y: -8}
+        - {x: 15, y: -6}
+        - {x: 4, y: 4}
     outline: []
   spritePackingTag: 
   userData: 

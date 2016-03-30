@@ -41,6 +41,7 @@ public class ScriptPlayer : MonoBehaviour {
         //Initialize 
         xIndex = (int)transform.position.x;
         yIndex = (int)transform.position.y;
+
         LightArea();
     }
 
@@ -203,12 +204,12 @@ public class ScriptPlayer : MonoBehaviour {
                         //if x is greater to the left than going down then we are going left
                         if(Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
                         {
-                            print("Left");
+                            //print("Left");
                             direction = "left";
                         }
                         else
                         {
-                            print("Down");
+                            //print("Down");
                             direction = "down";
                         }
                     }
@@ -217,12 +218,12 @@ public class ScriptPlayer : MonoBehaviour {
                     {
                         if (Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
                         {
-                            print("Right");
+                            //print("Right");
                             direction = "right";
                         }
                         else
                         {
-                            print("Up");
+                            //print("Up");
                             direction = "up";
                         }
                     }
@@ -272,11 +273,6 @@ public class ScriptPlayer : MonoBehaviour {
         }
         canFire = true;
     }
-
-    //void FixedUpdate()
-    //{
-        
-    //}
 
     void CheckAndMove(Vector2 pPos)
     {

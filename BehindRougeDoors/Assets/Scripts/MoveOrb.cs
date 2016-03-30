@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveOrb : MonoBehaviour {
+public class MoveOrb : MonoBehaviour
+{
 
 	void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,5 +14,14 @@ public class MoveOrb : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+        if(other.tag == "Enemy")
+        {
+            Debug.Log("Collide!!");
+            other.GetComponent<Health>().Damage(100);
+
+        }
     }
+
+
 }
