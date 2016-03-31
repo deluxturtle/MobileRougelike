@@ -2,3 +2,16 @@ Name: Basic Hud Tiles (+ Alphabet)
 Author: Andrew J Hamilton
 Source: http://opengameart.org/content/basic-hud-tiles-alphabet
 License: CC0
+
+Name:New Minimalist Pixel Fonts
+FontName: Minimal 3x5, Minimal 5x5 Monospace, Minimal 5x7
+Author: aka "kheftel"
+Source: http://opengameart.org/content/minimalist-pixel-fonts
+License: CC0
+
+Name:BitScript True Type Font
+FontName: bitscript
+Author: William. Thompsonj
+Source: http://opengameart.org/content/bitscript-true-type-font
+License: CC0
+

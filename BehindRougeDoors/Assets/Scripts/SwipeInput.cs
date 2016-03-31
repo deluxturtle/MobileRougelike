@@ -15,7 +15,6 @@ public class SwipeInput : MonoBehaviour {
     private float swipeMagnitude;
 
     public Animator menuAnimator;
-    bool onMain = true;
 
     
 	// Update is called once per frame
@@ -49,18 +48,18 @@ public class SwipeInput : MonoBehaviour {
                         {
                             //print("Left");
                             //if on main then swipe to credits
-                            if(menuAnimator.GetBool("onCredits") == false && onMain)
-                            {
-                                menuAnimator.SetBool("onCredits", true);
-                                onMain = false;
-                            }
+                            //if(menuAnimator.GetBool("onCredits") == false && onMain)
+                            //{
+                            //    //menuAnimator.SetBool("onCredits", true);
+                            //    //onMain = false;
+                            //}
                             
-                            //if on settings then go back to main.
-                            else if(menuAnimator.GetBool("onOptions") && !onMain)
-                            {
-                                menuAnimator.SetBool("onOptions", false);
-                                onMain = true;
-                            }
+                            ////if on settings then go back to main.
+                            //else if(menuAnimator.GetBool("onOptions") && !onMain)
+                            //{
+                            //    //menuAnimator.SetBool("onOptions", false);
+                            //    //onMain = true;
+                            //}
                         }
                         else
                         {
@@ -73,16 +72,16 @@ public class SwipeInput : MonoBehaviour {
                         if (Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
                         {
                             //print("Right");
-                            if(menuAnimator.GetBool("onCredits") && !onMain)
-                            {
-                                menuAnimator.SetBool("onCredits", false);
-                                onMain = true;
-                            }
-                            else if(!menuAnimator.GetBool("onOptions") && onMain)
-                            {
-                                menuAnimator.SetBool("onOptions", true);
-                                onMain = false;
-                            }
+                            //if(menuAnimator.GetBool("onCredits") && !onMain)
+                            //{
+                            //    menuAnimator.SetBool("onCredits", false);
+                            //    onMain = true;
+                            //}
+                            //else if(!menuAnimator.GetBool("onOptions") && onMain)
+                            //{
+                            //    menuAnimator.SetBool("onOptions", true);
+                            //    onMain = false;
+                            //}
                         }
                         else
                         {
