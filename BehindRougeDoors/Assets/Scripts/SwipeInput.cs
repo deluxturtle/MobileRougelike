@@ -1,5 +1,16 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+
+
+enum MainMenus
+{
+    NEWGAME,
+    LOADGAME,
+    CREDITS,
+    SETTINGS,
+    DIRECTIONS
+}
 
 /// <summary>
 /// @Author: Andrew Seba
@@ -14,12 +25,27 @@ public class SwipeInput : MonoBehaviour {
     private Vector2 swipeCurrentPos;
     private float swipeMagnitude;
 
-    public Animator menuAnimator;
+    Animator menuAnimator;
 
+    MainMenus currentMenu = MainMenus.NEWGAME;
+
+    void Start()
+    {
+        menuAnimator = GetComponentInChildren<Animator>();
+        currentMenu = MainMenus.NEWGAME;
+    }
     
 	// Update is called once per frame
 	void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GotoPreviousMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GotoNextMenu();
+        }
 	    //If only 1 touch went down
         if(Input.touchCount == 1)
         {
@@ -47,19 +73,7 @@ public class SwipeInput : MonoBehaviour {
                         if(Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
                         {
                             //print("Left");
-                            //if on main then swipe to credits
-                            //if(menuAnimator.GetBool("onCredits") == false && onMain)
-                            //{
-                            //    //menuAnimator.SetBool("onCredits", true);
-                            //    //onMain = false;
-                            //}
-                            
-                            ////if on settings then go back to main.
-                            //else if(menuAnimator.GetBool("onOptions") && !onMain)
-                            //{
-                            //    //menuAnimator.SetBool("onOptions", false);
-                            //    //onMain = true;
-                            //}
+                            GotoPreviousMenu();
                         }
                         else
                         {
@@ -93,4 +107,35 @@ public class SwipeInput : MonoBehaviour {
             }
         }
 	}
+
+    public void GotoPreviousMenu()
+    {
+
+        string currentMenuString = currentMenu.ToString();
+
+        //Get the previous menu enum.
+        if((MainMenus)Enum.Parse(typeof(MainMenus), currentMenuString) - 1 < 0)
+        {
+            currentMenu = MainMenus.DIRECTIONS;
+        }
+        else
+        {
+            currentMenu = (MainMenus)Enum.Parse(typeof(MainMenus), currentMenuString) - 1;
+        }
+
+        //Move with mechanim
+        menuAnimator.SetTrigger(currentMenu.ToString().ToLower());
+    }
+
+    public void GotoNextMenu()
+    {
+
+        //Get the next menu but go back to zero if its the last one.
+        int nextMenuNum = ((int)currentMenu + 1) % 5;
+
+        currentMenu = (MainMenus)nextMenuNum;
+
+        menuAnimator.SetTrigger(currentMenu.ToString().ToLower());
+
+    }
 }
