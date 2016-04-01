@@ -14,6 +14,7 @@ public class Tile : MonoBehaviour {
     public bool blocksLight = false;
     public bool wall = false;
     public bool ceiling = false;
+    public bool topDoor = false;
     public int tempRange = 0;
     public List<GameObject> neighbors = new List<GameObject>();
     public List<GameObject> northTiles = new List<GameObject>();

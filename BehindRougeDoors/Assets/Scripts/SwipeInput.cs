@@ -73,7 +73,7 @@ public class SwipeInput : MonoBehaviour {
                         if(Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
                         {
                             //print("Left");
-                            GotoPreviousMenu();
+                            GotoNextMenu();
                         }
                         else
                         {
@@ -86,16 +86,8 @@ public class SwipeInput : MonoBehaviour {
                         if (Mathf.Abs(swipeCurrentPos.x - swipeStartPos.x) > Mathf.Abs(swipeCurrentPos.y - swipeStartPos.y))
                         {
                             //print("Right");
-                            //if(menuAnimator.GetBool("onCredits") && !onMain)
-                            //{
-                            //    menuAnimator.SetBool("onCredits", false);
-                            //    onMain = true;
-                            //}
-                            //else if(!menuAnimator.GetBool("onOptions") && onMain)
-                            //{
-                            //    menuAnimator.SetBool("onOptions", true);
-                            //    onMain = false;
-                            //}
+
+                            GotoPreviousMenu();
                         }
                         else
                         {

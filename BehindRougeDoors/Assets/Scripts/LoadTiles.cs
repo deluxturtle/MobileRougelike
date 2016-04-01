@@ -179,8 +179,9 @@ public class LoadTiles : MonoBehaviour {
                         switch (spriteValue)
                         {
                             case CLOSEDDOORONETOP:
+                                tempSprite.GetComponent<Tile>().topDoor = true;
                                 //Disable the door sprite cuz we are just going to spawn a door object on it.
-                                tempSprite.SetActive(false);
+                                //tempSprite.SetActive(false);
                                 //tempSprite.GetComponent<SpriteRenderer>().sprite = null;
                                 //tempSprite.GetComponent<SpriteRenderer>().enabled = false;
                                 //tempSprite.GetComponent<Tile>().blocksLight = true;

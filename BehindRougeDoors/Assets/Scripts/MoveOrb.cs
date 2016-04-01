@@ -17,7 +17,6 @@ public class MoveOrb : MonoBehaviour
 
         if(other.tag == "Enemy")
         {
-            Debug.Log("Collide!!");
             other.GetComponent<Health>().Damage(100);
 
         }
