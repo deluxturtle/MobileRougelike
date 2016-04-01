@@ -15,3 +15,8 @@ Author: William. Thompsonj
 Source: http://opengameart.org/content/bitscript-true-type-font
 License: CC0
 
+Name: Songs From An Unmade World
+Tracks: 10, 14, 16, & 18
+Author: aka "Visager"
+Source: http://freemusicarchive.org/music/Visager/Songs_From_An_Unmade_World/
+License: CC-BY

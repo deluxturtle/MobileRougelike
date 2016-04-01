@@ -9,8 +9,9 @@ public class ScriptSkeleton : MonoBehaviour {
 
     public int xIndex;
     public int yIndex;
+    
 
-    public bool isDead = false;
+    bool activated = false;
 
     private Animator animator;
     private GameObject player;
@@ -30,6 +31,7 @@ public class ScriptSkeleton : MonoBehaviour {
 
     public void Activate()
     {
+        activated = true;
         InvokeRepeating("Attack", 0, 3);
     }
 
@@ -43,33 +45,45 @@ public class ScriptSkeleton : MonoBehaviour {
         {
             sprite.flipX = false;
         }
-        animator.SetTrigger("Attack");
+        animator.SetTrigger("attack");
 
         //hurt player.
-        player.GetComponentInChildren<Health>().Damage(25);
-        
+        Invoke("HitPlayer", 1);
     }
+
+    void HitPlayer()
+    {
+        if(Vector2.Distance(player.transform.position, transform.position) < 2)
+        {
+            player.GetComponentInChildren<Health>().Damage(25);
+        }
+    }
+
     IEnumerator CheckForPlayer()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            if (!isDead)
+            if (scriptHealth.health > 0)
             {
                 if(player != null &&
-                    Vector2.Distance(transform.position, player.transform.position) < 2)
+                    Vector2.Distance(transform.position, player.transform.position) < 2 &&
+                    !activated &&
+                    player.GetComponent<Health>().health > 0)
                 {
-                    Activate();
+                        Activate();
                 }
                 else
                 {
                     CancelInvoke("Attack");
+                    activated = false;
                 }
             }
-            else//is dead
+            else//I am dead dead
             {
                 StopCoroutine("CheckForPlayer");
                 CancelInvoke("Attack");
+                activated = false;
                 break;
             }
             yield return null;
