@@ -2,7 +2,7 @@
 
 public class MusicManager : MonoBehaviour {
 
-    bool created = false;
+    static bool created = false;
 
     AudioSource source;
     public AudioClip mainMenuSong;
@@ -13,19 +13,36 @@ public class MusicManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        if (created && GameObject.Find("MusicManager"))
+
+        if (!created)
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+            created = true;
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return;
         }
+
+        //if (created && GameObject.Find("MusicManager"))
+        //{
+        //    Destroy(gameObject);
+        //}
+        //else
+        //{
+        //    DontDestroyOnLoad(gameObject);
+        //}
         Debug.Log("Start");
         source = GetComponent<AudioSource>();
 
         PlayMenuMusic();
 	}
+
+    public void UpdateVolume(float value)
+    {
+        source.volume = value;
+    }
 	
 	public void PlayMenuMusic()
     {

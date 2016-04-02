@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 71f2157b4aec1bf4eacadc368ce3b66f
-timeCreated: 1459451803
+timeCreated: 1459526952
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: 8x8 pixel tiles_3
     21300008: 8x8 pixel tiles_4
     21300010: 8x8 pixel tiles_5
+    21300012: 8x8 pixel tiles_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -121,6 +122,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+    - name: 8x8 pixel tiles_6
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 1
+        width: 3
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
   spritePackingTag: 

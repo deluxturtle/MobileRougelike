@@ -50,7 +50,13 @@ public class Health : MonoBehaviour {
             {
                 source.clip = hurtSound;
                 source.Play();
+
             }
+        }
+
+        if (gameObject.tag == "Player")
+        {
+            GameObject.Find("SliderHealth").GetComponent<HealthSlider>().UpdateHealth();
         }
     }
 }

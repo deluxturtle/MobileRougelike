@@ -21,6 +21,8 @@ public class SwipeInput : MonoBehaviour {
     [Tooltip("How long the swipe must be to be registered as a \"Swipe\"")]
     public int minSwipeDistance = 3;
 
+    public bool swipeDisabled = false;
+
     private Vector2 swipeStartPos;
     private Vector2 swipeCurrentPos;
     private float swipeMagnitude;
@@ -28,6 +30,16 @@ public class SwipeInput : MonoBehaviour {
     Animator menuAnimator;
 
     MainMenus currentMenu = MainMenus.NEWGAME;
+
+    //So we can use the sliders on the settings menu
+    public void _DisableSwipe()
+    {
+        swipeDisabled = true;
+    }
+    public void _EnableSwipe()
+    {
+        swipeDisabled = false;
+    }
 
     void Start()
     {
@@ -38,6 +50,7 @@ public class SwipeInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             GotoPreviousMenu();
@@ -63,7 +76,7 @@ public class SwipeInput : MonoBehaviour {
                 swipeMagnitude = swipeCurrentPos.magnitude - swipeStartPos.magnitude;
 
                 //If the magnitude of the swipe is greater than minSwipeDistance.
-                if(Mathf.Abs(swipeMagnitude) > minSwipeDistance)
+                if(Mathf.Abs(swipeMagnitude) > minSwipeDistance && !swipeDisabled)
                 {
                     //Debug.Log("Swipe");
                     //If swiping left or down

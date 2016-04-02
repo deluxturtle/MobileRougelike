@@ -7,7 +7,10 @@ public class ScriptPlayer : MonoBehaviour {
     public int xIndex = 3;
     public int yIndex = 3;
     public int lightRadius = 2;
+    [Tooltip("Place the projectile graphic here.")]
     public GameObject orb;
+    [Tooltip("Place the shield graphic here.")]
+    public GameObject shieldCanvas;
 
     bool left, right, up, down;
     Animator animator;
@@ -108,7 +111,7 @@ public class ScriptPlayer : MonoBehaviour {
                         {
                             if (!tempList.Contains(neighborTile) && !tempTile.blocksLight)
                             {
-                                Vector2 direction = (transform.position - neighborTile.transform.position);
+                                //Vector2 direction = (transform.position - neighborTile.transform.position);
                                 //if(!Physics2D.Raycast(transform.position, direction, lightRadius,))
                                 //{
                                     
