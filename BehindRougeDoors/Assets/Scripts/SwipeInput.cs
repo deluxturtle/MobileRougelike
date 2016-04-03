@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 
 
-enum MainMenus
+public enum MainMenus
 {
     NEWGAME,
     LOADGAME,
@@ -29,7 +29,7 @@ public class SwipeInput : MonoBehaviour {
 
     Animator menuAnimator;
 
-    MainMenus currentMenu = MainMenus.NEWGAME;
+    public MainMenus currentMenu = MainMenus.NEWGAME;
 
     //So we can use the sliders on the settings menu
     public void _DisableSwipe()

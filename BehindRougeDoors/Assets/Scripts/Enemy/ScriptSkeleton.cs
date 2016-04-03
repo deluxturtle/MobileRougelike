@@ -6,9 +6,7 @@ using System.Collections;
 /// @Description: Attacks players when they get to close
 /// </summary>
 public class ScriptSkeleton : MonoBehaviour {
-
-    public int xIndex;
-    public int yIndex;
+    
     
 
     bool activated = false;
@@ -84,6 +82,7 @@ public class ScriptSkeleton : MonoBehaviour {
                 StopCoroutine("CheckForPlayer");
                 CancelInvoke("Attack");
                 activated = false;
+                GetComponent<BoxCollider2D>().enabled = false;
                 break;
             }
             yield return null;

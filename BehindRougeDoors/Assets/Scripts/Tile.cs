@@ -104,6 +104,19 @@ public class Tile : MonoBehaviour {
                 }
             }
 
+            foreach(GameObject tile in southTiles)
+            {
+                if (tile.GetComponent<Tile>().ceiling && tile.GetComponent<Tile>().tempRange >= 1)
+                {
+                    tile.GetComponent<Tile>().LightTile();
+                }
+            }
+
+            foreach(GameObject tile in topTiles)
+            {
+                tile.GetComponent<Tile>().LightTile();
+            }
+
             //Light path for ceilings
             foreach(GameObject tile in westTiles)
             {

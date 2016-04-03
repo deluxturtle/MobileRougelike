@@ -11,6 +11,9 @@ public class ScriptPlayer : MonoBehaviour {
     public GameObject orb;
     [Tooltip("Place the shield graphic here.")]
     public GameObject shieldCanvas;
+    [Tooltip("Place the mana layout parent here.")]
+    public GameObject manaLayout;
+    private ManaHelper manaHelper;
 
     bool left, right, up, down;
     Animator animator;
@@ -27,13 +30,15 @@ public class ScriptPlayer : MonoBehaviour {
     private Vector2 swipeCurrentPos;
     private float swipeMagnitude;
 
+    //For lighting
+    bool moved = false;
 
     // Use this for initialization
     void Start () {
-        LightArea();
+        manaHelper = manaLayout.GetComponent<ManaHelper>();
 
-        left = right = up = false;
-        down = true;
+        left = down = up = false;
+        right = true;
         animator = GetComponent<Animator>();
         
         //Initialize 
@@ -112,24 +117,34 @@ public class ScriptPlayer : MonoBehaviour {
                             if (!tempList.Contains(neighborTile) && !tempTile.blocksLight)
                             {
                                 //Vector2 direction = (transform.position - neighborTile.transform.position);
-                                //if(!Physics2D.Raycast(transform.position, direction, lightRadius,))
+                                //RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, lightRadius);
+                                //if (hit.collider != null)
                                 //{
-                                    
-                                    bool belowLightBlock = false;
-                                    foreach(GameObject below in neighborTile.GetComponent<Tile>().topTiles)
+                                //    Debug.Log((hit.point - new Vector2(transform.position.x, transform.position.y)).magnitude);
+                                //}
+
+                                bool belowLightBlock = false;
+                                foreach(GameObject below in neighborTile.GetComponent<Tile>().topTiles)
+                                {
+                                    if (below.GetComponent<Tile>().blocksLight)
                                     {
-                                        if (below.GetComponent<Tile>().blocksLight)
-                                        {
-                                            belowLightBlock = true;
-                                            break;
-                                        }
+                                        belowLightBlock = true;
+                                        break;
                                     }
-                                    if (!belowLightBlock)
+                                }
+                                if (!belowLightBlock)
+                                {
+                                    neighborTile.GetComponent<Tile>().tempRange = range + 1;
+                                    tempList.Add(neighborTile);
+                                }
+                                foreach(GameObject south in neighborTile.GetComponent<Tile>().southTiles)
+                                {
+                                    if (south.GetComponent<Tile>().ceiling)
                                     {
-                                        neighborTile.GetComponent<Tile>().tempRange = range + 1;
+                                        south.GetComponent<Tile>().tempRange = range + 1;
                                         tempList.Add(neighborTile);
                                     }
-                                //}
+                                }
                             }
                         }
                     }
@@ -157,26 +172,16 @@ public class ScriptPlayer : MonoBehaviour {
     void Update()
     {
         string direction = "";
-//#if UNITY_EDITOR
-//        Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
-//        if (Input.GetButtonDown("Fire1"))
-//        {
-//            animator.SetTrigger("blast");
-//            Invoke("SpawnOrb", 0.5f);
-//        }
-//#elif MOBILE_INPUT
-        //if(Input.touchCount > 0)
-        //{
-        //    foreach(Touch touch in Input.touches)
-        //    {
-        //        if(touch.phase == TouchPhase.Began)
-        //        {
-        //            SpawnOrb();
-        //        }
-        //    }
-        //}
+#if UNITY_EDITOR
+        //Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
+        if (Input.GetButtonDown("Fire1") && manaHelper.UseMana())
+        {
+            animator.SetTrigger("blast");
+            Invoke("SpawnOrb", 0.5f);
+        }
+#elif UNITY_ANDROID
 
-        	    //If only 1 touch went down
+        //If only 1 touch went down
         if(Input.touchCount == 1 && GetComponent<Health>().health > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -228,7 +233,7 @@ public class ScriptPlayer : MonoBehaviour {
                 }
                 else
                 {
-                    if (canFire)
+                    if (canFire && manaHelper.UseMana())
                     {
                         canFire = false;
                         animator.SetTrigger("blast");
@@ -239,7 +244,7 @@ public class ScriptPlayer : MonoBehaviour {
             }
         }
 
-//#endif
+#endif
         if(GetComponent<Health>().health > 0)
             MoveCharacter(direction);
     }
@@ -275,17 +280,18 @@ public class ScriptPlayer : MonoBehaviour {
     void CheckAndMove(Vector2 pPos)
     {
         bool hitWall = false;
+
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, pPos.normalized, 1f);
         for(int i = 0; i < hit.Length; i++)
         {
             GameObject obj = hit[i].collider.gameObject;
-            if (obj.GetComponent<SpriteRenderer>().sortingLayerName == "Obstacles")
+            if (obj.GetComponentInChildren<SpriteRenderer>().sortingLayerName == "Obstacles")
             {
                 //Debug.Log("Hit wall");
                 hitWall = true;
                 break;
             }
-            if(obj.GetComponent<SpriteRenderer>().sortingLayerName == "Interactive")
+            if(obj.GetComponentInChildren<SpriteRenderer>().sortingLayerName == "Interactive")
             {
                 if(obj.GetComponentInChildren<Door>() != null)
                 {
@@ -294,22 +300,32 @@ public class ScriptPlayer : MonoBehaviour {
                     hitWall = true;
                     break;
                 }
+                if(obj.GetComponentInChildren<ScriptSkeleton>() != null)
+                {
+                    if(obj.GetComponent<Health>().health > 0)
+                    {
+                        hitWall = true;
+                    }
+                    break;
+                }
             }
         }
 
         //If we didn't detect a wall then move.
-        if (!hitWall)
+        if (!hitWall && moved)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y) + pPos;
             xIndex = (int)transform.position.x;
             yIndex = (int)transform.position.y;
             LightArea();
+            manaHelper.AddMiniMana();
         }
 
     }
 
     private void MoveCharacter(string pInputDirection)
     {
+        moved = false;
         targetPos = Vector2.zero;
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || pInputDirection == "right")
         {
@@ -322,6 +338,7 @@ public class ScriptPlayer : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = false;
 
             targetPos += Vector2.right;
+            moved = true;
             //xIndex++;
 
         }
@@ -338,6 +355,8 @@ public class ScriptPlayer : MonoBehaviour {
 
 
             targetPos += Vector2.left;
+            moved = true;
+
         }
 
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || pInputDirection == "up")
@@ -347,6 +366,8 @@ public class ScriptPlayer : MonoBehaviour {
             up = true;
 
             targetPos += Vector2.up;
+            moved = true;
+
         }
 
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || pInputDirection == "down")
@@ -356,6 +377,8 @@ public class ScriptPlayer : MonoBehaviour {
             down = true;
 
             targetPos += Vector2.down;
+            moved = true;
+
         }
 
         CheckAndMove(targetPos);

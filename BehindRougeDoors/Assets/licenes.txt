@@ -9,12 +9,6 @@ Author: aka "kheftel"
 Source: http://opengameart.org/content/minimalist-pixel-fonts
 License: CC0
 
-Name:BitScript True Type Font
-FontName: bitscript
-Author: William. Thompsonj
-Source: http://opengameart.org/content/bitscript-true-type-font
-License: CC0
-
 Name: Songs From An Unmade World
 Tracks: 10, 14, 16, & 18
 Author: aka "Visager"

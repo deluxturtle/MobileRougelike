@@ -43,9 +43,12 @@ public class LoadTiles : MonoBehaviour {
     //Spawn Point Guy
     const int SPAWNDUDETOP = 781;
     const int SPAWNDUDEBOTTOM = 811;
-    //Skeletons
+    //Skeletons Type1 enemy
     const int SKELETONTOP = 883;
     const int SKELETONBOTTOM = 913;
+    //statue type 3 enemy
+    const int STATUETOP = 590;
+    const int STATUEBOTTOM = 620;
 
 
     void Awake()
@@ -178,14 +181,9 @@ public class LoadTiles : MonoBehaviour {
                     {
                         switch (spriteValue)
                         {
+                            //Door Spawning
                             case CLOSEDDOORONETOP:
                                 tempSprite.GetComponent<Tile>().topDoor = true;
-                                //Disable the door sprite cuz we are just going to spawn a door object on it.
-                                //tempSprite.SetActive(false);
-                                //tempSprite.GetComponent<SpriteRenderer>().sprite = null;
-                                //tempSprite.GetComponent<SpriteRenderer>().enabled = false;
-                                //tempSprite.GetComponent<Tile>().blocksLight = true;
-                                //tempSprite.GetComponent<Tile>().wall = true;
                                 break;
                             case CLOSEDDOORONEBOTTOM:
                                 tempSprite.name = "Door";
@@ -194,18 +192,9 @@ public class LoadTiles : MonoBehaviour {
                                 door.GetComponent<Tile>().yIndex = verticalIndex;
                                 door.GetComponent<Tile>().blocksLight = true;
                                 door.GetComponent<Tile>().wall = true;
-                                //GameObject doorTop = new GameObject();
-                                //doorTop.transform.position = new Vector2((tileWidth * horizontalIndex), (tileHeight * verticalIndex + 1));
-                                //Tile doorTopTile = doorTop.AddComponent<Tile>();
-                                //doorTopTile.xIndex = horizontalIndex;
-                                //doorTopTile.yIndex = verticalIndex + 1;
-                                //doorTopTile.blocksLight = true;
-                                //doorTopTile.wall = true;
-
-                                //door.GetComponent<Door>().topPart = doorTop;
-                                //Actually disable the door sprite
                                 tempSprite.SetActive(false);
                                 break;
+                            //Player spawn point
                             case SPAWNDUDETOP:
                                 tempSprite.SetActive(false);
                                 break;
@@ -213,6 +202,7 @@ public class LoadTiles : MonoBehaviour {
                                 player.transform.position = tempSprite.transform.position;
                                 tempSprite.SetActive(false);
                                 break;
+                            //Skeleton Spawns
                             case SKELETONTOP:
                                 tempSprite.SetActive(false);
                                 break;
@@ -220,8 +210,15 @@ public class LoadTiles : MonoBehaviour {
                                 tempSprite.SetActive(false);
                                 GameObject tempSkeleton = (GameObject)Instantiate(skeleton, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
                                 tempSkeleton.transform.position = tempSprite.transform.position;
-                                tempSkeleton.GetComponentInChildren<ScriptSkeleton>().xIndex = horizontalIndex;
-                                tempSkeleton.GetComponentInChildren<ScriptSkeleton>().yIndex = verticalIndex;
+                                tempSkeleton.GetComponentInChildren<Tile>().xIndex = horizontalIndex;
+                                tempSkeleton.GetComponentInChildren<Tile>().yIndex = verticalIndex;
+                                break;
+                            case STATUETOP:
+                                tempSprite.SetActive(false);
+                                break;
+                            case STATUEBOTTOM:
+                                tempSprite.SetActive(false);
+                                //add statue prefab.
                                 break;
                         }
                     }
@@ -247,6 +244,10 @@ public class LoadTiles : MonoBehaviour {
         {
             tile.GetComponent<Tile>().MakeNeighbors();
         }
+        //foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        //{
+        //    enemy.GetComponent<Tile>().MakeNeighbors();
+        //}
 
 	}
 	

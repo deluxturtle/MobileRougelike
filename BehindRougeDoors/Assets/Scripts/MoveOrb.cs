@@ -15,7 +15,7 @@ public class MoveOrb : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(other.tag == "Enemy")
+        if(other.GetComponentInChildren<ScriptSkeleton>())
         {
             other.GetComponent<Health>().Damage(100);
 

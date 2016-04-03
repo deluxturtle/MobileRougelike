@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// @Author: Andrew Seba
+/// @Description: Checks to see if you've played before and
+/// Sets the loaded level
+/// </summary>
 public class SaveInfo : MonoBehaviour {
 
     public GameObject directionsPanel;
+    public GameObject menus;
+
     static bool created = false;
 
     string savedLevelName = "";
@@ -27,7 +34,9 @@ public class SaveInfo : MonoBehaviour {
 
         if (PlayerPrefs.GetString("PlayedBefore") != "yes")
         {
+            PlayerPrefs.SetString("PlayedBefore", "yes");
             GameObject.Find("Menus").GetComponent<Animator>().SetTrigger("directions");
+            menus.GetComponent<SwipeInput>().currentMenu = MainMenus.DIRECTIONS;
             directionsPanel.SetActive(true);
         }
 
