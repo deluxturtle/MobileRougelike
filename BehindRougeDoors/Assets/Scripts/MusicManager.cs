@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// @Author: Andrew Seba
+/// @Description: Singleton music manager.
+/// </summary>
 public class MusicManager : MonoBehaviour {
 
     static bool created = false;
@@ -33,7 +37,6 @@ public class MusicManager : MonoBehaviour {
         //{
         //    DontDestroyOnLoad(gameObject);
         //}
-        Debug.Log("Start");
         source = GetComponent<AudioSource>();
 
         PlayMenuMusic();
