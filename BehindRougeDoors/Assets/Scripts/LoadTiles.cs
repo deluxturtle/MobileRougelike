@@ -11,6 +11,7 @@ public class LoadTiles : MonoBehaviour {
 
     //holds the .xml file.
     [Header("Map Info")]
+    public int levelNum;
     public TextAsset[] mapInformation;
     public int layerWidth;
     public int layerHeight;
@@ -54,7 +55,8 @@ public class LoadTiles : MonoBehaviour {
     void Awake()
     {
         tileParent = new GameObject();
-        LoadMap(UnityEngine.Random.Range(0, mapInformation.Length));
+        levelNum = UnityEngine.Random.Range(0, mapInformation.Length);
+        LoadMap(levelNum);
 
     }
 

@@ -35,9 +35,12 @@ public class SaveInfo : MonoBehaviour {
         if (PlayerPrefs.GetString("PlayedBefore") != "yes")
         {
             PlayerPrefs.SetString("PlayedBefore", "yes");
-            GameObject.Find("Menus").GetComponent<Animator>().SetTrigger("directions");
-            menus.GetComponent<SwipeInput>().currentMenu = MainMenus.DIRECTIONS;
-            directionsPanel.SetActive(true);
+            if (GameObject.Find("Menus"))
+            {
+                GameObject.Find("Menus").GetComponent<Animator>().SetTrigger("directions");
+                menus.GetComponent<SwipeInput>().currentMenu = MainMenus.DIRECTIONS;
+                directionsPanel.SetActive(true);
+            }
         }
 
         switch (PlayerPrefs.GetString("savedLevel"))
@@ -48,12 +51,21 @@ public class SaveInfo : MonoBehaviour {
             case "Level2":
                 savedLevelName = "Level2";
                 break;
+            case "Level3":
+                savedLevelName = "Level3";
+                break;
             default:
                 savedLevelName = "none";
                 break;
         }
 
         Debug.Log(savedLevelName);
+    }
+
+    public void SaveGame()
+    {
+        LoadTiles levelLoader = GameObject.Find("LevelLoad").GetComponent<LoadTiles>();
+        string currentLevel = levelLoader.mapInformation[levelLoader.levelNum].ToString();
     }
 	
 }
