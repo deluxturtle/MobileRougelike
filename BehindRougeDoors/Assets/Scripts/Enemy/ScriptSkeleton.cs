@@ -81,6 +81,7 @@ public class ScriptSkeleton : MonoBehaviour {
             {
                 StopCoroutine("CheckForPlayer");
                 CancelInvoke("Attack");
+                CancelInvoke("HitPlayer");
                 activated = false;
                 GetComponent<BoxCollider2D>().enabled = false;
                 break;

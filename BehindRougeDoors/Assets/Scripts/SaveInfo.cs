@@ -66,6 +66,11 @@ public class SaveInfo : MonoBehaviour {
     {
         LoadTiles levelLoader = GameObject.Find("LevelLoad").GetComponent<LoadTiles>();
         string currentLevel = levelLoader.mapInformation[levelLoader.levelNum].ToString();
+
+        int currentHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().health;
+
+        Debug.Log("Level: " + currentLevel);
+        Debug.Log("Health: " + currentHealth);
     }
 	
 }

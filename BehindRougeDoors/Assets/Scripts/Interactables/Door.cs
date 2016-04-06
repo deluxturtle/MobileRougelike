@@ -32,7 +32,7 @@ public class Door : MonoBehaviour {
         GetComponent<Tile>().blocksLight = false;
         GetComponent<Tile>().wall = false;
         GetComponent<Animator>().SetBool("open", true);
-
+        GetComponent<AudioSource>().Play();
 
     }
 }

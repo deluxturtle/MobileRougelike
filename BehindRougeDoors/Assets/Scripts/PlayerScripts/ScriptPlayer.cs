@@ -174,7 +174,7 @@ public class ScriptPlayer : MonoBehaviour {
         string direction = "";
 #if UNITY_EDITOR
         //Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
-        if (Input.GetButtonDown("Fire1") && manaHelper.UseMana())
+        if (Input.GetButtonDown("Fire1") && manaHelper.UseMana() && GetComponent<Health>().health > 0)
         {
             animator.SetTrigger("blast");
             Invoke("SpawnOrb", 0.5f);
@@ -295,7 +295,7 @@ public class ScriptPlayer : MonoBehaviour {
             {
                 if(obj.GetComponentInChildren<Door>() != null)
                 {
-                    Debug.Log("Hit Door");
+                    //Debug.Log("Hit Door");
                     obj.GetComponent<Door>().OpenDoor();
                     hitWall = true;
                     break;
