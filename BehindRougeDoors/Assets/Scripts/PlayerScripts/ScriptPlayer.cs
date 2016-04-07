@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// @Author: Main player controller and controls the light up system.
+/// </summary>
 public class ScriptPlayer : MonoBehaviour {
 
     public int xIndex = 3;
@@ -48,6 +51,15 @@ public class ScriptPlayer : MonoBehaviour {
         LightArea();
     }
 
+    public void Respawn()
+    {
+        //Initialize 
+        xIndex = (int)transform.position.x;
+        yIndex = (int)transform.position.y;
+
+        LightArea();
+    }
+
     #region LightArea
     void ClearRange()
     {
@@ -65,6 +77,11 @@ public class ScriptPlayer : MonoBehaviour {
         //Grab the tile i am on.
         
         GameObject myTile = GameObject.Find("Background <" + xIndex +", " + yIndex + ">");
+        if(myTile == null)
+        {
+            return tempList;
+        }
+
         tempList.Add(myTile);
 
         //Add my 1 distance neighbors
@@ -72,41 +89,55 @@ public class ScriptPlayer : MonoBehaviour {
         {
             foreach(GameObject neighborTile in myTile.GetComponent<Tile>().northTiles)
             {
-                neighborTile.GetComponent<Tile>().tempRange = 1;
-                tempList.Add(neighborTile);
+                if(neighborTile != null)
+                {
+                    neighborTile.GetComponent<Tile>().tempRange = 1;
+                    tempList.Add(neighborTile.gameObject);
+
+                }
             }
         }
         if(myTile.GetComponent<Tile>().southTiles.Count > 0)
         {
             foreach(GameObject neighborTile in myTile.GetComponent<Tile>().southTiles)
             {
-                neighborTile.GetComponent<Tile>().tempRange = 1;
-                tempList.Add(neighborTile);
+                if (neighborTile != null)
+                {
+                    neighborTile.GetComponent<Tile>().tempRange = 1;
+                    tempList.Add(neighborTile.gameObject);
+                    
+                }
             }
         }
         if(myTile.GetComponent<Tile>().eastTiles.Count > 0)
         {
             foreach(GameObject neighborTile in myTile.GetComponent<Tile>().eastTiles)
             {
-                neighborTile.GetComponent<Tile>().tempRange = 1;
-                tempList.Add(neighborTile);
+                if(neighborTile != null)
+                {
+                    neighborTile.GetComponent<Tile>().tempRange = 1;
+                    tempList.Add(neighborTile);
+                }
             }
         }
         if (myTile.GetComponent<Tile>().westTiles.Count > 0)
         {
             foreach(GameObject neighborTile in myTile.GetComponent<Tile>().westTiles)
             {
-                neighborTile.GetComponent<Tile>().tempRange = 1;
-                tempList.Add(neighborTile);
+                if(neighborTile != null)
+                {
+                    neighborTile.GetComponent<Tile>().tempRange = 1;
+                    tempList.Add(neighborTile);
+                }
             }
         }
 
 
         for (int range = 1; range <= pRange; range++)
         {
-            foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+            foreach(Tile tile in GameObject.FindObjectsOfType<Tile>())
             {
-                if(tile != null && tile.GetComponent<Tile>()!= null && tile.GetComponent<Tile>().tempRange == range)
+                if(tile != null && tile.tempRange == range)
                 {
                     if(range < pRange)
                     {
@@ -154,7 +185,9 @@ public class ScriptPlayer : MonoBehaviour {
         return tempList;
     }
 
-
+    /// <summary>
+    /// Light tiles in your sight range.
+    /// </summary>
     void LightArea()
     {
 
@@ -173,7 +206,6 @@ public class ScriptPlayer : MonoBehaviour {
     {
         string direction = "";
 #if UNITY_EDITOR
-        //Debug.DrawRay(transform.position, targetPos.normalized, Color.red);
         if (Input.GetButtonDown("Fire1") && manaHelper.UseMana() && GetComponent<Health>().health > 0)
         {
             animator.SetTrigger("blast");
@@ -291,7 +323,8 @@ public class ScriptPlayer : MonoBehaviour {
                 hitWall = true;
                 break;
             }
-            if(obj.GetComponentInChildren<SpriteRenderer>().sortingLayerName == "Interactive")
+            if(obj.GetComponentInChildren<SpriteRenderer>().sortingLayerName == "Interactive" ||
+                obj.GetComponentInChildren<SpriteRenderer>().sortingLayerName == "Player")
             {
                 if(obj.GetComponentInChildren<Door>() != null)
                 {
@@ -383,5 +416,14 @@ public class ScriptPlayer : MonoBehaviour {
 
         CheckAndMove(targetPos);
 
+    }
+
+    /// <summary>
+    /// Player death function.
+    /// </summary>
+    public void Death()
+    {
+        FindObjectOfType<Score>().StopScoreDeduction();
+        FindObjectOfType<LoadScenes>()._GameOver();
     }
 }

@@ -33,8 +33,18 @@ public class Score : MonoBehaviour {
         UpdateScoreText();
     }
 
-    void DeductScore(int amount)
+    public void DeductScore(int amount)
     {
         score -= amount;
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+    }
+
+    public void StopScoreDeduction()
+    {
+        CancelInvoke("DeductScore");
     }
 }

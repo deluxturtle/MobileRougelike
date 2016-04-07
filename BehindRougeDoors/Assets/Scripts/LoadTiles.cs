@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Xml;
 using System.Collections.Generic;
-using System;
+using System.Collections;
 
 /// <summary>
 /// @Author: Andrew Seba
@@ -19,19 +19,18 @@ public class LoadTiles : MonoBehaviour {
     public GameObject doorObject;
 
     [Header("Enemies")]
-    public GameObject skeleton;
+    [Tooltip("Place the skeleton prefab here.")]
+    public GameObject skeletonPrefab;
+    [Tooltip("Plase the tower enemy prefab here.")]
+    public GameObject towerPrefab;
     
     [Header("Other")]
     public GameObject player;
 
 
     //private variables
-    GameObject tileParent;
     private Sprite[] spritesLevelOne;
     private Sprite[] spritesLevelTwo;
-
-    //BackgroundLyaer
-    GameObject[] tileIndex;
 
     //Sprite Index for interactable entities.
     //Closed Door
@@ -54,14 +53,19 @@ public class LoadTiles : MonoBehaviour {
 
     void Awake()
     {
-        tileParent = new GameObject();
         levelNum = UnityEngine.Random.Range(0, mapInformation.Length);
-        LoadMap(levelNum);
+        StartCoroutine(LoadMap(levelNum));
 
     }
 
-	public void LoadMap (int mapNum)
+	IEnumerator LoadMap (int mapNum)
     {
+        ClearLevel();
+        //Tiles were still referencing old tiles memory.
+        yield return new WaitForEndOfFrame();
+
+        levelNum = mapNum;
+
         //Load the tileset into the sprites array
         spritesLevelOne = Resources.LoadAll<Sprite>("dungeon_tileset_calciumtrice");
         spritesLevelTwo = Resources.LoadAll<Sprite>("snow-expansion");
@@ -136,6 +140,7 @@ public class LoadTiles : MonoBehaviour {
                     }
                     //create a sprite
                     GameObject tempSprite = new GameObject(layerInfo.Attributes["name"].Value + " <" + horizontalIndex + ", " + verticalIndex + ">");
+
                     //Add the tile script to it
                     Tile tempTile = tempSprite.AddComponent<Tile>();
                     tempTile.xIndex = horizontalIndex;
@@ -167,14 +172,14 @@ public class LoadTiles : MonoBehaviour {
                             tempSprite.name = "Ceiling";
                             tempTile.blocksLight = true;
                             tempTile.ceiling = true;
-                            tempTile.mask = 1 << 8;
+                            //tempTile.mask = 1 << 8;
                         }
                         if(spriteValue >= 121 && spriteValue <= 158)
                         {
                             tempSprite.name = "Wall";
                             tempTile.wall = true;
                             tempTile.blocksLight = true;
-                            tempTile.mask = 1 << 8;
+                            //tempTile.mask = 1 << 8;
                         }
                         //121 158
                     }
@@ -210,13 +215,16 @@ public class LoadTiles : MonoBehaviour {
                                 break;
                             case SKELETONBOTTOM:
                                 tempSprite.SetActive(false);
-                                GameObject tempSkeleton = (GameObject)Instantiate(skeleton, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
+                                GameObject tempSkeleton = (GameObject)Instantiate(skeletonPrefab, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
                                 tempSkeleton.transform.position = tempSprite.transform.position;
                                 tempSkeleton.GetComponentInChildren<Tile>().xIndex = horizontalIndex;
                                 tempSkeleton.GetComponentInChildren<Tile>().yIndex = verticalIndex;
                                 break;
                             case STATUETOP:
                                 tempSprite.SetActive(false);
+                                GameObject tempTower = (GameObject)Instantiate(towerPrefab, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
+                                tempTower.GetComponent<Tile>().xIndex = horizontalIndex;
+                                tempTower.GetComponent<Tile>().yIndex = verticalIndex;
                                 break;
                             case STATUEBOTTOM:
                                 tempSprite.SetActive(false);
@@ -242,46 +250,53 @@ public class LoadTiles : MonoBehaviour {
         }
 
         //Generate Tile neighbors
-        foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        foreach(Tile tile in GameObject.FindObjectsOfType<Tile>())
         {
-            tile.GetComponent<Tile>().MakeNeighbors();
+            //Debug catch for some itermitant error.
+            if (tile == null)
+            {
+                Debug.Log(tile.name);
+            }
+
+            tile.MakeNeighbors();
         }
         //foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         //{
         //    enemy.GetComponent<Tile>().MakeNeighbors();
         //}
+        player.GetComponent<ScriptPlayer>().Respawn();
 
+        yield break;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        #region CheatCodes
+#if UNITY_EDITOR//cheat codes
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            ClearLevel();
-            LoadMap(0);
+            StartCoroutine(LoadMap(0));
+            
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            ClearLevel();
             LoadMap(1);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            ClearLevel();
             LoadMap(2);
         }
         Time.timeScale = 1;
 
-        #endregion
+#endif
     }
 
     void ClearLevel()
     {
-        foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        foreach(Tile tile in GameObject.FindObjectsOfType<Tile>())
         {
-            Destroy(tile);
+            //Debug.Log(tile.gameObject.name);
+            Destroy(tile.gameObject);
         }
     }
 }

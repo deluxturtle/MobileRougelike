@@ -11,9 +11,12 @@ public class SaveInfo : MonoBehaviour {
     public GameObject directionsPanel;
     public GameObject menus;
 
+    public int score;
+    public int lvlsCompleted;
+
     static bool created = false;
 
-    string savedLevelName = "";
+    int savedLevelIndex = 0;
 
 
     void Awake()
@@ -43,34 +46,41 @@ public class SaveInfo : MonoBehaviour {
             }
         }
 
-        switch (PlayerPrefs.GetString("savedLevel"))
+        switch (PlayerPrefs.GetInt("savedLevel"))
         {
-            case "Level1":
-                savedLevelName = "Level1";
+            case 1:
+                savedLevelIndex = 1;
                 break;
-            case "Level2":
-                savedLevelName = "Level2";
+            case 2:
+                savedLevelIndex = 2;
                 break;
-            case "Level3":
-                savedLevelName = "Level3";
+            case 3:
+                savedLevelIndex = 3;
                 break;
             default:
-                savedLevelName = "none";
+                savedLevelIndex = 0;
                 break;
         }
 
-        Debug.Log(savedLevelName);
+        Debug.Log(savedLevelIndex);
     }
 
     public void SaveGame()
     {
         LoadTiles levelLoader = GameObject.Find("LevelLoad").GetComponent<LoadTiles>();
-        string currentLevel = levelLoader.mapInformation[levelLoader.levelNum].ToString();
+        int currentLevel = levelLoader.levelNum;
 
         int currentHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().health;
 
         Debug.Log("Level: " + currentLevel);
+        PlayerPrefs.SetInt("savedLevel", currentLevel);
         Debug.Log("Health: " + currentHealth);
+        PlayerPrefs.SetInt("health", currentHealth);
+    }
+
+    public void LoadGame()
+    {
+
     }
 	
 }

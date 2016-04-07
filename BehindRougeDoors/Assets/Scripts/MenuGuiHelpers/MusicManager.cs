@@ -29,14 +29,6 @@ public class MusicManager : MonoBehaviour {
             return;
         }
 
-        //if (created && GameObject.Find("MusicManager"))
-        //{
-        //    Destroy(gameObject);
-        //}
-        //else
-        //{
-        //    DontDestroyOnLoad(gameObject);
-        //}
         source = GetComponent<AudioSource>();
 
         PlayMenuMusic();
@@ -56,6 +48,12 @@ public class MusicManager : MonoBehaviour {
     public void PlayCaveMusic()
     {
         source.clip = caveSong;
+        source.Play();
+    }
+
+    public void PlayGameOverMusic()
+    {
+        source.clip = gameOver;
         source.Play();
     }
 }

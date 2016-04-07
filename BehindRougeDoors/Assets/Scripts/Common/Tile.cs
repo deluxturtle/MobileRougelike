@@ -7,8 +7,7 @@ using System.Collections.Generic;
 /// @Description: Generic Tile Property. Holds light up data.
 /// </summary>
 public class Tile : MonoBehaviour {
-
-    public LayerMask mask = 1;
+    
     public int xIndex;
     public int yIndex;
     public bool blocksLight = false;
@@ -24,59 +23,66 @@ public class Tile : MonoBehaviour {
     public List<GameObject> topTiles = new List<GameObject>();
     bool lit = false;
     
-    LoadTiles mapProperties;
     
     
 
     //Generates the neighbors list
     public void MakeNeighbors()
     {
-        mapProperties = GameObject.Find("LevelLoad").GetComponent<LoadTiles>();
-        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        //MakeNewLists();
+        neighbors = new List<GameObject>();
+        northTiles = new List<GameObject>();
+        southTiles = new List<GameObject>();
+        eastTiles = new List<GameObject>();
+        westTiles = new List<GameObject>();
+        topTiles = new List<GameObject>();
+
+        foreach (Tile tile in GameObject.FindObjectsOfType<Tile>())
         {
-            if (tile.GetComponent<Tile>().xIndex == (xIndex - 1) &&
-                tile.GetComponent<Tile>().yIndex == yIndex)
+            if (tile.xIndex == (xIndex - 1) &&
+                tile.yIndex == yIndex)
             {
-                if (tile != gameObject && !neighbors.Contains(tile))
+                if (tile.gameObject != gameObject && !neighbors.Contains(tile.gameObject))
                 {
-                    eastTiles.Add(tile);
-                    neighbors.Add(tile);
+                    eastTiles.Add(tile.gameObject);
+                    neighbors.Add(tile.gameObject);
                 }
             }
-            else if (tile.GetComponent<Tile>().xIndex == (xIndex + 1) &&
-                tile.GetComponent<Tile>().yIndex == yIndex)
+            else if (tile.xIndex == (xIndex + 1) &&
+                tile.yIndex == yIndex)
             {
-                if (tile != gameObject && !neighbors.Contains(tile))
+                if (tile.gameObject != gameObject && !neighbors.Contains(tile.gameObject))
                 {
-                    westTiles.Add(tile);
-                    neighbors.Add(tile);
+                    westTiles.Add(tile.gameObject);
+                    neighbors.Add(tile.gameObject);
                 }
             }
 
-            else if (tile.GetComponent<Tile>().yIndex == (yIndex + 1) &&
-                tile.GetComponent<Tile>().xIndex == xIndex)
+            else if (tile.yIndex == (yIndex + 1) &&
+                tile.xIndex == xIndex)
             {
-                if (tile != gameObject && !neighbors.Contains(tile))
+                if (tile.gameObject != gameObject && !neighbors.Contains(tile.gameObject))
                 {
-                    northTiles.Add(tile);
-                    neighbors.Add(tile);
+                    northTiles.Add(tile.gameObject);
+                    neighbors.Add(tile.gameObject);
                 }
             }
-            else if (tile.GetComponent<Tile>().yIndex == (yIndex - 1) &&
-                tile.GetComponent<Tile>().xIndex == xIndex)
+            else if (tile.yIndex == (yIndex - 1) &&
+                tile.xIndex == xIndex)
             {
 
-                if(tile != gameObject && !neighbors.Contains(tile))
+                if(tile.gameObject != gameObject && !neighbors.Contains(tile.gameObject))
                 {
-                    southTiles.Add(tile);
-                    neighbors.Add(tile);
+                    southTiles.Add(tile.gameObject);
+                    neighbors.Add(tile.gameObject);
                 }
             }
-            else if(tile.GetComponent<Tile>().yIndex == yIndex &&
-                tile.GetComponent<Tile>().xIndex == xIndex)
+            else if(tile.yIndex == yIndex &&
+                tile.xIndex == xIndex)
             {
                 //then its on top of this.
-                topTiles.Add(tile);
+                if (tile.gameObject != gameObject && !neighbors.Contains(tile.gameObject))
+                    topTiles.Add(tile.gameObject);
             }
 
         }
@@ -137,4 +143,19 @@ public class Tile : MonoBehaviour {
         }
 
     }
+
+    /// <summary>
+    /// Initializes all the lists.
+    /// </summary>
+    void MakeNewLists()
+    {
+        neighbors.Clear();
+        
+        northTiles.Clear();
+        southTiles.Clear();
+        eastTiles.Clear();
+        westTiles.Clear();
+        topTiles.Clear();
+
+    }  
 }

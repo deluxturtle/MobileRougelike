@@ -2,6 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/// <summary>
+/// @Author: Andrew Seba
+/// @Description: Finds all the buttons in a scene and makes them play the
+/// button sound.
+/// </summary>
 public class ButtonBooper : MonoBehaviour {
 
 

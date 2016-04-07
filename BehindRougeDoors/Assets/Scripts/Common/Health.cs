@@ -41,7 +41,11 @@ public class Health : MonoBehaviour {
             if(gameObject.tag == "Player")
             {
                 Debug.Log("Game Over");
+
+
             }
+
+            gameObject.SendMessage("Death", SendMessageOptions.DontRequireReceiver);
         }
         else
         {
