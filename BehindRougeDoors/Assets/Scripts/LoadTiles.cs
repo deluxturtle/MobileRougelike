@@ -27,6 +27,11 @@ public class LoadTiles : MonoBehaviour {
     [Header("Other")]
     public GameObject player;
 
+    [HideInInspector]
+    public List<GameObject> skeletonSpawnPoints = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> powerupSpawnPoints = new List<GameObject>();
+
 
     //private variables
     private Sprite[] spritesLevelOne;
@@ -233,11 +238,13 @@ public class LoadTiles : MonoBehaviour {
                                 tempSprite.SetActive(false);
                                 break;
                             case SKELETONBOTTOM:
-                                tempSprite.SetActive(false);
-                                GameObject tempSkeleton = (GameObject)Instantiate(skeletonPrefab, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
-                                tempSkeleton.transform.position = tempSprite.transform.position;
-                                tempSkeleton.GetComponentInChildren<Tile>().xIndex = horizontalIndex;
-                                tempSkeleton.GetComponentInChildren<Tile>().yIndex = verticalIndex;
+                                //tempSprite.SetActive(false);
+                                tempSprite.GetComponent<SpriteRenderer>().enabled = false;
+                                //GameObject tempSkeleton = (GameObject)Instantiate(skeletonPrefab, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
+                                //tempSkeleton.transform.position = tempSprite.transform.position;
+                                //tempSkeleton.GetComponentInChildren<Tile>().xIndex = horizontalIndex;
+                                //tempSkeleton.GetComponentInChildren<Tile>().yIndex = verticalIndex;
+                                skeletonSpawnPoints.Add(tempSprite);
                                 break;
                             case STATUETOP:
                                 tempSprite.SetActive(false);
@@ -287,6 +294,22 @@ public class LoadTiles : MonoBehaviour {
 
         yield break;
 	}
+
+    /// <summary>
+    /// Spawn enemies in on the spawn points per difficulty
+    /// </summary>
+    void DoTheRandomSpawning()
+    {
+        int numSkeletons = 
+        foreach(GameObject spawnPoint in skeletonSpawnPoints)
+        {
+            GameObject tempSkeleton = (GameObject)Instantiate(skeletonPrefab, spawnPoint.transform.position, Quaternion.identity);
+            //tempSkeleton.transform.position = tempSprite.transform.position;
+            tempSkeleton.GetComponentInChildren<Tile>().xIndex = spawnPoint.GetComponent<Tile>().xIndex;
+            tempSkeleton.GetComponentInChildren<Tile>().yIndex = spawnPoint.GetComponent<Tile>().yIndex;
+
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
