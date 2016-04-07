@@ -53,7 +53,26 @@ public class LoadTiles : MonoBehaviour {
 
     void Awake()
     {
-        levelNum = UnityEngine.Random.Range(0, mapInformation.Length);
+        if (GameObject.Find("SaveInfo") && !GameObject.Find("SaveInfo").GetComponent<SaveInfo>().newGame)
+        {
+            SaveInfo saveInfo = GameObject.Find("SaveInfo").GetComponent<SaveInfo>();
+            levelNum = saveInfo.savedLevelIndex -1;
+
+            //If no level num is -1 do random.
+            if (levelNum < 0)
+            {
+                levelNum = UnityEngine.Random.Range(0, mapInformation.Length);
+                
+            }
+            else//If there is a saved level load in the health
+            {
+                player.GetComponent<Health>().health = saveInfo.savedHealth;
+            }
+        }
+        else//If you cant find save info default to random.
+        {
+            levelNum = UnityEngine.Random.Range(0, mapInformation.Length);
+        }
         StartCoroutine(LoadMap(levelNum));
 
     }

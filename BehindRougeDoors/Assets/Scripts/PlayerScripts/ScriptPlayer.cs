@@ -425,5 +425,6 @@ public class ScriptPlayer : MonoBehaviour {
     {
         FindObjectOfType<Score>().StopScoreDeduction();
         FindObjectOfType<LoadScenes>()._GameOver();
+
     }
 }

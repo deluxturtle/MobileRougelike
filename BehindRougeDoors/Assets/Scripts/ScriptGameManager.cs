@@ -19,6 +19,21 @@ public enum Difficutly
 public class ScriptGameManager : MonoBehaviour
 {
     public Difficutly currentDifficulty = Difficutly.MEDIUM;
+
+    public int enemiesKilled = 0;
+
+    public void IncreaseDifficulty()
+    {
+        switch (currentDifficulty)
+        {
+            case Difficutly.EASY:
+                break;
+            case Difficutly.MEDIUM:
+                break;
+            case Difficutly.HARD:
+                break;
+        }
+    }
 	
     public void ChangeDifficutly(Difficutly pDifficulty)
     {

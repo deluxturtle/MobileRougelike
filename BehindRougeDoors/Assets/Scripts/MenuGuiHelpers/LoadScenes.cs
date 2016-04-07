@@ -16,10 +16,28 @@ public class LoadScenes : MonoBehaviour {
     /// </summary>
     public void _NewGame()
     {
+        SaveInfo saveInfoScript = FindObjectOfType<SaveInfo>();
+        saveInfoScript.newGame = true;
+
         loadingPanel.SetActive(true);
         SceneManager.LoadScene("LoadMap");
         MusicManager music = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+
         music.PlayCaveMusic();
+    }
+
+    public void _LoadGame()
+    {
+        SaveInfo saveInfoScript = FindObjectOfType<SaveInfo>();
+        saveInfoScript.newGame = false;
+
+        loadingPanel.SetActive(true);
+        SceneManager.LoadScene("LoadMap");
+
+
+        MusicManager music = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+        music.PlayCaveMusic();
+
     }
 
     /// <summary>
@@ -39,9 +57,11 @@ public class LoadScenes : MonoBehaviour {
             Score curScoreScript = FindObjectOfType<Score>();
             SaveInfo saveInfoScript = FindObjectOfType<SaveInfo>();
             //Grab score stuff if available.
-            if (curScoreScript && saveInfoScript)
+            if (curScoreScript && saveInfoScript && !saveInfoScript.newGame)
             {
                 saveInfoScript.score = curScoreScript.score;
+                saveInfoScript.savedLevelIndex = -1;
+                saveInfoScript.savedHealth = 100;
             }
         }
 #if UNITY_EDITOR
