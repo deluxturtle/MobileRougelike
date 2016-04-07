@@ -19,7 +19,9 @@ public class LoadScenes : MonoBehaviour {
         SaveInfo saveInfoScript = FindObjectOfType<SaveInfo>();
         saveInfoScript.newGame = true;
 
-        loadingPanel.SetActive(true);
+        if(loadingPanel)
+            loadingPanel.SetActive(true);
+
         SceneManager.LoadScene("LoadMap");
         MusicManager music = GameObject.Find("MusicManager").GetComponent<MusicManager>();
 
@@ -73,9 +75,10 @@ public class LoadScenes : MonoBehaviour {
 
         SceneManager.LoadScene("GameOver");
         MusicManager music = GameObject.Find("MusicManager").GetComponent<MusicManager>();
-        music.PlayCaveMusic();
+        music.PlayGameOverMusic();
     }
 
+    //TODO
     public void NextLevel()
     {
         if (FindObjectOfType<SaveInfo>())

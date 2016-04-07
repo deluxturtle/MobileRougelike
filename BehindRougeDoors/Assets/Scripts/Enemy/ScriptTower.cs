@@ -50,5 +50,6 @@ public class ScriptTower : MonoBehaviour {
     public void Death()
     {
         CancelInvoke("ShootAtPlayer");
+        Destroy(gameObject);
     }
 }

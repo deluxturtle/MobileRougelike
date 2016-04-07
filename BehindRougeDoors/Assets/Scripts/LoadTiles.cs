@@ -238,8 +238,8 @@ public class LoadTiles : MonoBehaviour {
                                 tempSprite.SetActive(false);
                                 break;
                             case SKELETONBOTTOM:
-                                //tempSprite.SetActive(false);
-                                tempSprite.GetComponent<SpriteRenderer>().enabled = false;
+                                tempSprite.SetActive(false);
+                                //tempSprite.GetComponent<SpriteRenderer>().enabled = false;
                                 //GameObject tempSkeleton = (GameObject)Instantiate(skeletonPrefab, new Vector3((tileWidth * horizontalIndex), (tileHeight * verticalIndex)), Quaternion.identity);
                                 //tempSkeleton.transform.position = tempSprite.transform.position;
                                 //tempSkeleton.GetComponentInChildren<Tile>().xIndex = horizontalIndex;
@@ -273,10 +273,15 @@ public class LoadTiles : MonoBehaviour {
                     horizontalIndex = 0;
                 }
             }
+
+            
         }
 
+
+        DoTheRandomSpawning();
+
         //Generate Tile neighbors
-        foreach(Tile tile in GameObject.FindObjectsOfType<Tile>())
+        foreach (Tile tile in GameObject.FindObjectsOfType<Tile>())
         {
             //Debug catch for some itermitant error.
             if (tile == null)
@@ -297,10 +302,11 @@ public class LoadTiles : MonoBehaviour {
 
     /// <summary>
     /// Spawn enemies in on the spawn points per difficulty
+    /// TODO
     /// </summary>
     void DoTheRandomSpawning()
     {
-        int numSkeletons = 
+        int numSkeletons = 5;
         foreach(GameObject spawnPoint in skeletonSpawnPoints)
         {
             GameObject tempSkeleton = (GameObject)Instantiate(skeletonPrefab, spawnPoint.transform.position, Quaternion.identity);

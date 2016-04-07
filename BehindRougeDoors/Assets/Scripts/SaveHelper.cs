@@ -22,7 +22,7 @@ public class SaveHelper : MonoBehaviour {
             saveInfo = GameObject.Find("SaveInfo").GetComponent<SaveInfo>();
         }
 #else
-        saveInfo = GameObject.Find("SaveInfo").GetComponent<SaveInfo
+        saveInfo = GameObject.Find("SaveInfo").GetComponent<SaveInfo>();
 #endif
 	}
 
