@@ -205,7 +205,7 @@ public class ScriptPlayer : MonoBehaviour {
     void Update()
     {
         string direction = "";
-#if UNITY_EDITOR
+#if UNITY_STANDALONE
         if (Input.GetButtonDown("Fire1") && manaHelper.UseMana() && GetComponent<Health>().health > 0)
         {
             animator.SetTrigger("blast");
